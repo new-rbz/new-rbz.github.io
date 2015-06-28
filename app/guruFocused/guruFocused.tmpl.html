@@ -1,0 +1,31 @@
+﻿<div class='container container-fluid row' ng-cloak="">
+  <div class="col-sm-3" ng-show="vm.tickers.length > 0">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-danger center-block" ng-click="vm.openAll()">Open All</button>
+        <select class="form-control" data-ng-options="s.name for s in vm.sites" data-ng-model="vm.selectedSite"></select>
+      </span>
+    </div>
+    <div style="overflow-y: auto; height:600px;">
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="t in vm.tickers">
+          <a ng-click="vm.open(t)" class="btn center-block">{{t}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <img src="http://finviz.com/chart.ashx?t={{vm.currentSymbol}}&ty=c&ta=1&p=d&s=l" />
+    <br />
+    <br />
+    <form class="form-search">
+      <textarea rows="10"
+                cols="150"
+                auto-focus
+                ng-focus=""
+                ng-model="vm.input"
+                ng-enter="vm.submit()"
+                class="form-control"></textarea>
+    </form>
+  </div>
+</div>

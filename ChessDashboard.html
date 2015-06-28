@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chess Dashboard</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="style/dashboard.css">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="scripts/dashboardBase.js"></script>
+    <script src="scripts/dashboard.js"></script>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var prodId = getParameterByName('prodId');
+
+        $(function () {
+            dashboard.Initialize('https://docs.google.com/spreadsheets/d/1ETdRf3ZP5KiN-di_aAEqgWB4bs5KRT3aMI3qwPyj1pE/edit#gid=0');
+        });
+    </script>
+</head>
+<body>
+    <div id="target"></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="style/dashboard.css">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="scripts/dashboardBase.js"></script>
+    <script src="scripts/dashboard.js"></script>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        $(function () {
+            var prodId = getParameterByName('prodId');
+            var url = '';
+            switch (prodId) {
+                case "c": url = 'https://docs.google.com/spreadsheets/d/1ETdRf3ZP5KiN-di_aAEqgWB4bs5KRT3aMI3qwPyj1pE/edit#gid=0'; break;
+                case "e": url = 'https://docs.google.com/spreadsheets/d/1zBmDVuEJSaxeY1r8HOb0SrRXigVM3jGu-SDARKSHPGg/edit#gid=0'; break;
+                case "ev": url = 'https://docs.google.com/spreadsheets/d/1wr2VpTgxG4TnB97_Qwk1T7-LUU0p5j95ayEvWwWaLr0/edit#gid=0'; break;
+                case "fd": url = 'https://docs.google.com/spreadsheets/d/1OJZ4N51jxaXBQoSmSDJi2TGJDNHxOrR7Thkl3ZyYxpM/edit#gid=0'; break;                
+                case 'se': url = 'https://docs.google.com/spreadsheets/d/1DwFQFZGNeBJ84ZOdmj-33lCIwrdxAge_Sr_J2-kXPcM/edit#gid=0'; break;
+                case "fi":
+                default:
+                 url = 'https://docs.google.com/spreadsheets/d/1r_wk2TkhVq2AsFWg0vv02bVy4CubxF9qeKScVyCNnA4/edit#gid=0'; break;
+            }
+
+            dashboard.Initialize(url);
+        });
+    </script>
+</head>
+<body>
+    <div id="target"></div>
+</body>
+</html>

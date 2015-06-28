@@ -1,0 +1,25 @@
+<div ng-cloak="">
+  <div class="well">
+    <div class="row">
+      <div class="col-xs-6">
+          <select class="form-control" ng-model="vm.selectedSource" ng-change="vm.handleDataSourceChange()"
+                  title='Choose one of the following...'>
+              <option ng-repeat="item in vm.sources">{{item}}</option>
+          </select>
+      </div>
+    </div>
+  </div>
+
+  <tabset type="pills">
+    <tab data-ng-repeat="src in vm.data" heading="{{src.sector}}" data-ng-click="vm.tabSwitch(src.sector)">
+      <div class="animated fadeInUp">
+        <!-- http://daneden.github.io/animate.css/ -->
+        <ul class="list-inline">
+          <li data-ng-repeat="ticker in src.list">
+            <img data-ng-click='vm.selected(ticker)' class="candlestick" ng-src="http://finviz.com/chart.ashx?t={{ticker}}&ty=c&ta=1&p=d&s=l">
+          </li>
+        </ul>
+      </div>
+    </tab>
+  </tabset>
+</div>
