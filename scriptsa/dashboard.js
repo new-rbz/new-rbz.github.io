@@ -1,4 +1,4 @@
-var dashboard = function ($menuElementAnchor) {
+var dashboard = function ($menuElementAnchor) { 
   'use strict';
   var self = this,
   base = dashboardBase('dashboard', 80);
