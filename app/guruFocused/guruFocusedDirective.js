@@ -24,7 +24,7 @@
 
   function guruFocusedController($window, localStorageService) {
     var vm = this, key = "guruFocused";
-
+    vm.data = [];
     this.submit = function () {
       var split = vm.input.split(/[ ,\n\t]+/);
 

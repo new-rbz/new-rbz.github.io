@@ -26,6 +26,9 @@
     var vm = this,
       i = 0;
 
+    vm.data = [];
+vm.sources = [];
+
     vm.tabSwitch = function (sector) {
       var newSectorElement, oldSectorElement;
 

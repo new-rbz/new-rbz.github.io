@@ -44,7 +44,8 @@
       interval = parseInt($stateParams.interval);
     var timeout = interval ? interval : 5000,
         flatTickersList = [];
-
+    vm.sources = [];
+    vm.data = [];
     vm.openTradeView = openTradeView;
     vm.openFinviz = openFinviz;
     vm.openYahoo = openYahoo;

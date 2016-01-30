@@ -60,7 +60,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="result in vm.data track by result.symbol" popover-placement="top" popover-trigger="click" popover="
+                  <tr sly-repeat="result in vm.data" popover-placement="top" popover-trigger="click" popover="
                         <img height='300' width='600' src='http://finviz.com/chart.ashx?t={{result.symbol}}&ty=c&ta=1&p=d&s=l' style='vertical-align: middle !important;' />" >
                         <td>
                             <span class="label label-info">
@@ -215,7 +215,7 @@
             <div class="animated fadeInDown panel-body">
                 <button ng-show="vm.tickers.length > 0" class="btn btn-danger glyphicon glyphicon-trash" ng-click="vm.clear()">&nbsp;Delete-All</button>
                 <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="t in vm.tickers">
+                    <li class="list-group-item" sly-repeat="t in vm.tickers">
                         <span class="btn" disabled="disabled">{{t | uppercase}}</span>
                         <button type="button" class="btn btn-warning glyphicon glyphicon-remove pull-right" ng-click="vm.removeTicker(t);"></button>
                     </li>

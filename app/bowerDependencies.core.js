@@ -9,6 +9,7 @@
      'LocalStorageModule',
      'toaster',
      'ngSanitize',
-     'highcharts-ng'
+     'highcharts-ng',
+     'sly'
     ]);
 }());

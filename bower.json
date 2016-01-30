@@ -18,9 +18,13 @@
     "bootstrap": "~3.2.0",
     "angular-strap": "~2.0.5",
     "angular-ui-router": "~0.2.13",
-    "angular-ui-bootstrap-bower": "~0.12.1"
+    "angular-ui-bootstrap-bower": "~0.12.1",
+    "sfly-scalyr": "^1.0.6"
   },
   "devDependencies": {
     "AngularJS-Toaster": "~0.4.15"
+  },
+  "resolutions": {
+    "angular": "~1.x"
   }
 }

@@ -39,14 +39,14 @@ var routeData = {
       'title': 'Chart Viewer',
       'templateUrl': '/app/finvizChartViewer/finvizChartView.tmpl.html',
       'controller': 'finvizChartViewController'
-    },
-    {
-      'state': 'guruFocused',
-      'routeUrl': '/guruFocused',
-      'title': 'Guru Focused',
-      'templateUrl': '/app/guruFocused/guruFocused.tmpl.html',
-      'controller': 'guruFocusedController'
-    }
+    } //,
+    // {
+    //   'state': 'guruFocused',
+    //   'routeUrl': '/guruFocused',
+    //   'title': 'Guru Focused',
+    //   'templateUrl': '/app/guruFocused/guruFocused.tmpl.html',
+    //   'controller': 'guruFocusedController'
+    // }
   ],
   defaultRoute: "detailedtracker"
 };

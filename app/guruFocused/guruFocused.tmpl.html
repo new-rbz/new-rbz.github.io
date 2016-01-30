@@ -8,7 +8,7 @@
     </div>
     <div style="overflow-y: auto; height:600px;">
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="t in vm.tickers">
+        <li class="list-group-item" sly-repeat="t in vm.tickers">
           <a ng-click="vm.open(t)" class="btn center-block">{{t}}</a>
         </li>
       </ul>
