@@ -13,6 +13,10 @@
 	div.navbar-collapse.collapse.in {
 		max-height: 2000px;
 	}
+
+  body > menu-directive > div > div > ul > li {
+    height: 1em !important;
+  }
 </style>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
@@ -36,16 +40,16 @@
 <div class="row">
 <div class="col-xs-12">
   <tabset justified="true" type="pills">
-    <tab heading="stocks" style="height:1em;" class="col-xs-3">
+    <tab heading="stocks" style="height:1em !important;" class="col-xs-3">
 	  <div ui-view class="horizontal-slide-animation"></div>
     </tab>
-      <tab heading="Op Ex" style="height:1em;" class="col-xs-3">
+      <tab heading="Op Ex" style="height:1em !important;" class="col-xs-3">
       <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=CL&p=d1&s=m&rev=635741174661809365">
       <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=HO&p=d1&s=m&rev=635741174661809365">
       <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=NG&p=d1&s=m&rev=635741174661809365">
       <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=DX&p=d1&s=m&rev=635741178592664902">
     </tab>
-    <tab heading="Cap Ex" style="height:1em;" class="col-xs-3">
+    <tab heading="Cap Ex" style="height:1em !important;" class="col-xs-3">
           <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=HG&p=d1&s=m&rev=635741176474639954">
       <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=LB&p=d1&s=m&rev=635741176191492587">
             <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=GC&p=d1&s=m&rev=635741176474639954">
