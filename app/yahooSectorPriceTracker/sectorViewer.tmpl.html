@@ -1,4 +1,3 @@
-<!-- https://github.com/daneden/animate.css/blob/master/README.md -->
 <style>
     .label {
         vertical-align: middle !important;
@@ -36,8 +35,8 @@
             <li role="presentation" class="active">&nbsp;|Avg PB {{ vm.data | weightedAverageAll:'PriceBook':'MarketCapitalization':'list' | number:2  }}</li>
             <li role="presentation">&nbsp;|Avg PS {{ vm.data | weightedAverageAll:'PriceSales':'MarketCapitalization':'list' | number:2  }}</li>
             <li role="presentation" class="active">&nbsp;|Avg Div {{ vm.data | weightedAverageAll:'DividendYield':'MarketCapitalization':'list' | number:2  }}</li>
-            <li role="presentation">&nbsp;|Avg MACD50 {{ vm.data | weightedAverageAll:'PercentChangeFromFiftydayMovingAverage':'MarketCapitalization':'list' | number:2  }}</li>
-            <li role="presentation">&nbsp;|Avg MACD200 {{ vm.data | weightedAverageAll:'PercentChangeFromTwoHundreddayMovingAverage':'MarketCapitalization':'list' | number:2  }}</li>
+            <li role="presentation">&nbsp;|Avg MA50 {{ vm.data | weightedAverageAll:'PercentChangeFromFiftydayMovingAverage':'MarketCapitalization':'list' | number:2  }}</li>
+            <li role="presentation">&nbsp;|Avg MA200 {{ vm.data | weightedAverageAll:'PercentChangeFromTwoHundreddayMovingAverage':'MarketCapitalization':'list' | number:2  }}</li>
           </ul>
         </div>
       </div>
@@ -50,8 +49,8 @@
               <li role="presentation">&nbsp;|Avg PB {{ row.list | weightedAverage:'PriceBook':'MarketCapitalization' | number:2  }}</li>
               <li role="presentation">&nbsp;|Avg PS {{ row.list | weightedAverage:'PriceSales':'MarketCapitalization' | number:2  }}</li>
               <li role="presentation">&nbsp;|Avg Div {{ row.list | weightedAverage:'DividendYield':'MarketCapitalization' | number:2  }}</li>
-              <li role="presentation">&nbsp;|Avg MACD50 {{ row.list | weightedAverage:'PercentChangeFromFiftydayMovingAverage':'MarketCapitalization' | number:2  }}</li>
-              <li role="presentation">&nbsp;|Avg MACD200 {{ row.list | weightedAverage:'PercentChangeFromTwoHundreddayMovingAverage':'MarketCapitalization' | number:2  }}</li>
+              <li role="presentation">&nbsp;|Avg MA50 {{ row.list | weightedAverage:'PercentChangeFromFiftydayMovingAverage':'MarketCapitalization' | number:2  }}</li>
+              <li role="presentation">&nbsp;|Avg MA200 {{ row.list | weightedAverage:'PercentChangeFromTwoHundreddayMovingAverage':'MarketCapitalization' | number:2  }}</li>
             </ul>
           </div>
           <div class="row col-xs-12">
@@ -101,33 +100,30 @@
                   </td>
                   <td>
                     <span ng-class="{
-                            'label-danger' : vm.getRelativeVolume(result) < 50,
-                            'label-warning' : vm.getRelativeVolume(result) >= 50 && vm.getRelativeVolume(result) < 100,
-                            'label-success' : vm.getRelativeVolume(result) > 100
-                            }" class="label">{{ vm.getRelativeVolume(result) | number:0 }}%</span>
+                      'label-danger' : vm.getRelativeVolume(result) < 50,
+                      'label-warning' : vm.getRelativeVolume(result) >= 50 && vm.getRelativeVolume(result) < 100,
+                      'label-success' : vm.getRelativeVolume(result) > 100
+                      }" 
+                      class="label">{{ vm.getRelativeVolume(result) | number:0 }}%</span>
                   </td>
                   <td>
                     <span ng-class="{ 
-                            'label-danger' : vm.getDailyPercentChange(result) < 0,
-                            'label-warning' : vm.getDailyPercentChange(result) >= 0 && vm.getDailyPercentChange(result) <= (3.5),
-                            'label-success' : vm.getDailyPercentChange(result) > (3.5) }"
-                          class="label">{{ vm.getDailyPercentChange(result) | number:1 }}%</span>
+                      'label-danger' : vm.getDailyPercentChange(result) < 0,
+                      'label-warning' : vm.getDailyPercentChange(result) >= 0 && vm.getDailyPercentChange(result) <= (3.5),
+                      'label-success' : vm.getDailyPercentChange(result) > (3.5) }"
+                      class="label">{{ vm.getDailyPercentChange(result) | number:1 }}%</span>
                   </td>
                   <td>
                     <span ng-class="{ 
-                            'label-danger' : vm.getRegressionPotential(result) < 7,
-                            'label-warning' : vm.getRegressionPotential(result) >= 7 && vm.getRegressionPotential(result) <= 20,
-                            'label-success' : vm.getRegressionPotential(result) > 20 }"
+                      'label-danger' : vm.getRegressionPotential(result) < 7,
+                      'label-warning' : vm.getRegressionPotential(result) >= 7 && vm.getRegressionPotential(result) <= 20,
+                      'label-success' : vm.getRegressionPotential(result) > 20 }"
                           class="label">
                       {{ vm.getRegressionPotential(result) | number:1  }} %
                     </span>
                   </td>
-
                   <td><a ng-click='vm.openGuru(result.symbol)'>{{ result.LastTradePriceOnly | currency}}</a></td>
-
                   <td>{{ result.PreviousClose  | currency}}</td>
-                  <!--Price comparison to long-term -->
-
                   <td ng-if="vm.isDetailed">{{ result.ShortRatio }}</td>
                   <td ng-if="vm.isDetailed">
                     <span class="label label-info">
@@ -136,20 +132,22 @@
                   </td>
                   <td>
                     <a ng-click='vm.openGuru(result.symbol)'>
-                      <span ng-class="{ 'label-danger' :  vm.getMungerBuffettRatio(result) < 100,
-                            'label-warning' :vm.getMungerBuffettRatio(result) >= 100 && vm.getMungerBuffettRatio(result) <= 120,
-                            'label-success' : vm.getMungerBuffettRatio(result) > 120 }"
-                            class="label">
+                      <span ng-class="{ 
+                        'label-danger' :  vm.getMungerBuffettRatio(result) < 100,
+                        'label-warning' :vm.getMungerBuffettRatio(result) >= 100 && vm.getMungerBuffettRatio(result) <= 120,
+                        'label-success' : vm.getMungerBuffettRatio(result) > 120 }"
+                        class="label">
                         {{ vm.getMungerBuffettRatio(result) | number:2 }}%
                       </span>
                     </a>
                   </td>
                   <td ng-if="vm.isDetailed">{{ result.EPSEstimateCurrentYear | number:2}}</td>
                   <td ng-if="vm.isDetailed">
-                    <span ng-class="{ 'label-danger' :  vm.getEpsGrowth(result) < 0,
-                            'label-warning' : vm.getEpsGrowth(result) >= 0 && vm.getEpsGrowth(result) <= 0.05,
-                            'label-success' : vm.getEpsGrowth(result) > 0.5 }"
-                          class="label">
+                    <span ng-class="{ 
+                      'label-danger' :  vm.getEpsGrowth(result) < 0,
+                      'label-warning' : vm.getEpsGrowth(result) >= 0 && vm.getEpsGrowth(result) <= 0.05,
+                      'label-success' : vm.getEpsGrowth(result) > 0.5 }"
+                      class="label">
                       {{ vm.getEpsGrowth(result) | number:2}}%
                     </span>
                   </td>
