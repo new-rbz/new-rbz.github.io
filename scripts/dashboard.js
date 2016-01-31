@@ -31,7 +31,7 @@ var dashboard = function ($menuElementAnchor) {
     while (i < chosenArray.length) {
       var item = chosenArray[i].c;
 
-      if (item[4].v === 1) {
+      if (item && item.length && item.length > 0 && item[4] && item[4].v && item[4].v === 1) {
         base.items.push({ div: "div" + count, url: item[2].v, title: item[0].v, type: item[1].v, PopUp: item[3].v });
 
         if (item[3].v === 0) {

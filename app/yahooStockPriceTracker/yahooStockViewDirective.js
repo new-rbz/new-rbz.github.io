@@ -25,7 +25,7 @@
     var vm = this,
         interval = parseInt($stateParams.interval);
     var timeout = interval ? interval : 5000;
-
+vm.data = [];
     vm.add = add;
     vm.removeTicker = removeTicker;
     vm.clear = clear;
