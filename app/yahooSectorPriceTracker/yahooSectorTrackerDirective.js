@@ -44,6 +44,7 @@
       interval = parseInt($stateParams.interval);
     var timeout = interval ? interval : 5000,
         flatTickersList = [];
+
     vm.sources = [];
     vm.data = [];
     vm.openTradeView = openTradeView;
@@ -51,59 +52,19 @@
     vm.openYahoo = openYahoo;
     vm.openGuru = openGuru;
     vm.evaluateSeriesData = evaluateSeriesData;
-    vm.evaluateFundamentalData = evaluateFundamentalData;
+    vm.evaluateFundamentalData = yahooFinanceMetricsService.evaluateFundamentalData;
     vm.handleDataSourceChange = initialize;
-
-    vm.MovingAvgMeaning = function (result) {
-        var value = (result.OneyrTargetPrice 
-          ? "(" + Math.round(((result.OneyrTargetPrice/ result.LastTradePriceOnly-1) * 100)) + "% Target:" + result.OneyrTargetPrice + ", " 
-          : "(") + "MA50:" + result.PercentChangeFromFiftydayMovingAverage   +") "
-          + vm.evaluateSeriesData(result).text
-          return value;
-    }
-
-    vm.getEpsGrowth = function (result) {
-      return ((result.EPSEstimateNextYear / result.EPSEstimateCurrentYear) -1) * 100;
-    };
-
-    vm.getDailyPercentChange = function (result) {
-      return ((result.LastTradePriceOnly / result.PreviousClose) -1) * 100;
-    };
-
-    vm.getMungerBuffettRatio = function (result) {
-      var value = (22.5 / (result.PriceBook * result.PERatio)) * 100;
-      return value;
-    };
-
-    vm.getRegressionPotential = function (result) {
-      var value = ((result.YearHigh / result.LastTradePriceOnly) -1) * 100;
-      return value;
-    };
-
-    vm.getRelativeVolume = function (result) {
-      var value = (result.Volume / result.AverageDailyVolume) * 100;
-      return value;
-    };
-
-    vm.adjustDividendDate = function (date) {
-      if(!date)
-        return date;
-
-      var arrays = date.split('/');
-      var month = parseInt(arrays[0]);
-      var year = parseInt(arrays[2]);
-      
-      month += 3;
-      month %= 12;
-
-      arrays[0] = month.toString();
-      arrays[2] = year.toString();
-      var join = arrays.join('/');  
-      return join;
-    };
+    vm.changeSector=changeSector;
+    vm.MovingAvgMeaning = yahooFinanceMetricsService.MovingAvgMeaning; 
+    vm.getEpsGrowth =yahooFinanceMetricsService.getEpsGrowth;
+    vm.getDailyPercentChange =yahooFinanceMetricsService.getDailyPercentChange;
+    vm.getMungerBuffettRatio = yahooFinanceMetricsService.getMungerBuffettRatio;
+    vm.getRegressionPotential =yahooFinanceMetricsService.getRegressionPotential;
+    vm.getRelativeVolume = yahooFinanceMetricsService.getRelativeVolume;
+    vm.adjustDividendDate = adjustDividendDate; 
 
     initialize();
-
+    
     function openTradeView(ticker) {
       openUrl(ticker, 'https://dwq4do82y8xi7.cloudfront.net/widgetembed/?symbol='+ ticker +'&interval=D&hidesidetoolbar=0&symboledit=1&toolbarbg=f4f7f9&studies=&hideideas=0&theme=Black&timezone=exchange&showpopupbutton=1&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&showpopupbutton=1');
     };
@@ -137,8 +98,10 @@
     };
 
     function initialize() {
-      vm.isDetailed = false;
+      vm.isDetailed = true;
+      vm.currentsector = undefined;
       vm.data = [];
+      vm.rawResults = [];
       callGoogle();
     }
 
@@ -182,19 +145,36 @@
     }
 
     function apply(results) {
-      var keyField = 'symbol';
-
-      for (var i = 0; i < results.length; i++) {
-        for (var j = 0; j < vm.data.length; j++) {
-          for (var k = 0; k < vm.data[j].list.length; k++) {
-            if (vm.data[j].list[k] === results[i][keyField] || results[i][keyField] === vm.data[j].list[k][keyField]) {
-              vm.data[j].list[k] = results[i];
+      vm.rawResults = results;
+      
+      if(vm.data && vm.data.length && vm.data.length > 0){
+        for (var r = 0; r < vm.rawResults.length; r++) {
+          for (var i = 0; i < vm.data.length; i++) {
+            for (var j = 0; j < vm.data[i].list.length; j++) {
+              if( vm.rawResults[r].symbol === vm.data[i].list[j]){
+                vm.rawResults[r].sector = vm.data[i].sector;
+                vm.rawResults[r].relativeVolume = parseFloat(vm.getRelativeVolume(vm.rawResults[r]));
+                vm.rawResults[r].dailyPercentChange = parseFloat(vm.getDailyPercentChange(vm.rawResults[r]));
+                vm.rawResults[r].regressionPotential = parseFloat(vm.getRegressionPotential(vm.rawResults[r]));
+                vm.rawResults[r].mungerBuffettRatio = parseFloat(vm.getMungerBuffettRatio(vm.rawResults[r]));
+                vm.rawResults[r].epsGrowth = parseFloat(vm.getEpsGrowth(vm.rawResults[r]));
+                vm.rawResults[r].fundamental = parseFloat( vm.evaluateFundamentalData(vm.rawResults[r]));
+                vm.rawResults[r].MarketCapitalization = parseFloat(vm.rawResults[r].MarketCapitalization);
+                vm.rawResults[r].LastTradePriceOnly = parseFloat(vm.rawResults[r].LastTradePriceOnly);
+                vm.rawResults[r].PreviousClose = parseFloat(vm.rawResults[r].PreviousClose);
+                vm.rawResults[r].ShortRatio = parseFloat(vm.rawResults[r].ShortRatio);
+                vm.rawResults[r].EPSEstimateCurrentYear = parseFloat(vm.rawResults[r].EPSEstimateCurrentYear);
+                vm.rawResults[r].epsGrowth = parseFloat(vm.rawResults[r].epsGrowth);
+                vm.rawResults[r].PriceBook = parseFloat(vm.rawResults[r].PriceBook);
+                vm.rawResults[r].PriceSales = parseFloat(vm.rawResults[r].PriceSales);
+                vm.rawResults[r].PERatio = parseFloat(vm.rawResults[r].PERatio);
+                vm.rawResults[r].PEGRatio = parseFloat(vm.rawResults[r].PEGRatio);
+                vm.rawResults[r].DividendYield = parseFloat(vm.rawResults[r].DividendYield);
+              }
             }
           }
         }
       }
-
-      localStorageService.set(vm.selectedSource + '.data', vm.data);
     }
 
     function getFlatTickersList() {
@@ -206,6 +186,31 @@
       }
 
       return tickers;
+    }
+
+    function changeSector(sector) {
+      if(vm.currentsector === sector){
+        vm.currentsector = undefined;
+      } else {
+        vm.currentsector = sector;
+      }
+    }
+
+    function adjustDividendDate(date) {
+      if(!date)
+        return date;
+
+      var arrays = date.split('/');
+      var month = parseInt(arrays[0]);
+      var year = parseInt(arrays[2]);
+      
+      month += 3;
+      month %= 12;
+
+      arrays[0] = month.toString();
+      arrays[2] = year.toString();
+      var join = arrays.join('/');  
+      return join;
     }
   }
 }(angular.module(modules.sectorTracker)));

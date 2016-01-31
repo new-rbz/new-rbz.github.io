@@ -6,9 +6,51 @@
   yahooFinanceMetricsService.$inject = [];
 
   function yahooFinanceMetricsService() {
-    var thisSvc = this;
+    var svc = this;
 
-    thisSvc.evaluateFundamentalData = function (row) {
+    svc.getRelativeVolume = getRelativeVolume; 
+    svc.MovingAvgMeaning = MovingAvgMeaning;
+    svc.getRegressionPotential = getRegressionPotential;
+    svc.getDailyPercentChange = getDailyPercentChange; 
+    svc.getMungerBuffettRatio = getMungerBuffettRatio; 
+    svc.getEpsGrowth = getEpsGrowth; 
+    svc.evaluateFundamentalData = evaluateFundamentalData; 
+    svc.evaluateSeriesData = evaluateSeriesData;
+ 
+    return svc;
+
+    function getRelativeVolume(result) {
+      var value = (result.Volume / result.AverageDailyVolume) * 100;
+      return value;
+    }
+
+    function MovingAvgMeaning(result) {
+        var value = (result.OneyrTargetPrice 
+          ? "(" + Math.round(((result.OneyrTargetPrice/ result.LastTradePriceOnly-1) * 100)) + "% Target:" + result.OneyrTargetPrice + ", " 
+          : "(") + "MA50:" + result.PercentChangeFromFiftydayMovingAverage   +") "
+          + evaluateSeriesData(result).text
+          return value;
+    }
+
+    function getRegressionPotential(result) {
+      var value = ((result.YearHigh / result.LastTradePriceOnly) -1) * 100;
+      return value;
+    }
+
+    function getDailyPercentChange(result) {
+      return ((result.LastTradePriceOnly / result.PreviousClose) -1) * 100;
+    }
+
+    function getMungerBuffettRatio(result) {
+      var value = (22.5 / (result.PriceBook * result.PERatio)) * 100;
+      return value;
+    }
+
+    function getEpsGrowth(result) {
+      return ((result.EPSEstimateNextYear / result.EPSEstimateCurrentYear) -1) * 100;
+    }
+
+    function evaluateFundamentalData(row) {
       var ps = parseFloat(row.PriceSales);
       var eps = parseFloat(row.EarningsShare);
       var dps = parseFloat(row.DividendShare);
@@ -16,9 +58,9 @@
       var result = (eps + dps) / ps;
 
       return result;
-    }
+    };
 
-    thisSvc.evaluateSeriesData = function (row) {
+    function evaluateSeriesData(row) {
       var emptyString = "";
       var labelInfo = "label-info";
       var labelSuccess = "label-success";
