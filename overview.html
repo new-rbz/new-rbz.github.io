@@ -56,37 +56,55 @@
       <img class="candlestick" src="http://finviz.com/mktstats_image.ashx?3&rev=635491895855156250">
       <img class="candlestick" src="http://finviz.com/mktstats_image.ashx?4&rev=635491895855156250">
   </span>
-<div class="row col-xs-12">
-<a onclick='window.open("https://www.tradingview.com/chart/?symbol=spx");'>
-   <img class="candlestick" src="http://finviz.com/image.ashx?sp500&rev=635491898253437500">
-</a>
-<a onclick='window.open("https://www.tradingview.com/chart/?symbol=NAS100");'>
-   <img class="candlestick" src="http://finviz.com/image.ashx?nasdaq&rev=635491898253437500">
-</a>
-<a onclick='window.open("https://www.tradingview.com/chart/?symbol=DOWI");'>
-  <img class="candlestick" src="http://finviz.com/image.ashx?dow&rev=635491898253437500">
-</a>
-<a onclick='window.open("https://www.tradingview.com/chart/?symbol=VIX");'>
-  <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=VX&p=d1&s=m&rev=635741171362569851">
-</a> 
-        
-        
-</div>
-  <div class="col-xs-12">
-    <a onclick='window.open("https://www.tradingview.com/chart/?symbol=UIX");'>
-  <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=ER2&p=d1&s=m&rev=635741169554279766">
-</a>
-<a onclick='window.open("https://www.tradingview.com/chart/?symbol=MOY0");'>
-  <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=EX&p=d1&s=m&rev=635741173162378118">
-</a>
-<a onclick='window.open("https://www.tradingview.com/chart/?symbol=JPN225");'>
-  <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=NKD&p=d1&s=m&rev=635741173162378118">
-</a>
-<a onclick='window.open("https://www.tradingview.com/chart/?symbol=VIX");'>
-  <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=ZN&p=d1&s=m&rev=635741175830813962">
-</a>
-  </div>
-</div>
+  <tabset>
+    <tab heading="main">
+    <div class="row col-xs-12">
+      <a onclick='window.open("https://www.tradingview.com/chart/?symbol=spx");'>
+         <img class="candlestick" src="http://finviz.com/image.ashx?sp500&rev=635491898253437500">
+      </a>
+      <a onclick='window.open("https://www.tradingview.com/chart/?symbol=NAS100");'>
+         <img class="candlestick" src="http://finviz.com/image.ashx?nasdaq&rev=635491898253437500">
+      </a>
+      <a onclick='window.open("https://www.tradingview.com/chart/?symbol=DOWI");'>
+        <img class="candlestick" src="http://finviz.com/image.ashx?dow&rev=635491898253437500">
+      </a>
+      <a onclick='window.open("https://www.tradingview.com/chart/?symbol=VIX");'>
+        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=VX&p=d1&s=m&rev=635741171362569851">
+      </a> 
+      </div>
+    </tab>
+    <tab heading="additional">
+          <div class="col-xs-12">
+            <a onclick='window.open("https://www.tradingview.com/chart/?symbol=UIX");'>
+          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=ER2&p=d1&s=m&rev=635741169554279766">
+        </a>
+        <a onclick='window.open("https://www.tradingview.com/chart/?symbol=MOY0");'>
+          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=EX&p=d1&s=m&rev=635741173162378118">
+        </a>
+        <a onclick='window.open("https://www.tradingview.com/chart/?symbol=JPN225");'>
+          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=NKD&p=d1&s=m&rev=635741173162378118">
+        </a>
+        <a onclick='window.open("https://www.tradingview.com/chart/?symbol=VIX");'>
+          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=ZN&p=d1&s=m&rev=635741175830813962">
+        </a>
+          </div>
+    </tab>
+      <tab heading="Op Ex">
+        <a onclick='window.open("https://www.tradingview.com/chart/?symbol=USOIL");'>
+         <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=CL&p=d1&s=m&rev=635741174661809365">
+        </a>
+        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=HO&p=d1&s=m&rev=635741174661809365">
+        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=NG&p=d1&s=m&rev=635741174661809365">
+        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=DX&p=d1&s=m&rev=635741178592664902"> 
+    </tab>
+    <tab heading="Cap Ex">
+          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=HG&p=d1&s=m&rev=635741176474639954">
+      <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=LB&p=d1&s=m&rev=635741176191492587">
+            <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=GC&p=d1&s=m&rev=635741176474639954">
+      <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=SI&p=d1&s=m&rev=635741176474639954">
+    </tab>
+  </tabset>
+
 <menu-directive></menu-directive>
 
     <script type="text/javascript" src="/scripts/linq.js_ver2.2.0.2/linq.min.js"></script>
