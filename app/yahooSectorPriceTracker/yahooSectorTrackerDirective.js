@@ -54,6 +54,37 @@
     vm.evaluateFundamentalData = evaluateFundamentalData;
     vm.handleDataSourceChange = initialize;
 
+    vm.MovingAvgMeaning = function (result) {
+        var value = (result.OneyrTargetPrice 
+          ? "(" + Math.round(((result.OneyrTargetPrice/ result.LastTradePriceOnly-1) * 100)) + "% Target:" + result.OneyrTargetPrice + ", " 
+          : "(") + "MA50:" + result.PercentChangeFromFiftydayMovingAverage   +") "
+          + vm.evaluateSeriesData(result).text
+          return value;
+    }
+
+    vm.getEpsGrowth = function (result) {
+      return ((result.EPSEstimateNextYear / result.EPSEstimateCurrentYear) -1) * 100;
+    };
+
+    vm.getDailyPercentChange = function (result) {
+      return ((result.LastTradePriceOnly / result.PreviousClose) -1) * 100;
+    };
+
+    vm.getMungerBuffettRatio = function (result) {
+      var value = (22.5 / (result.PriceBook * result.PERatio)) * 100;
+      return value;
+    };
+
+    vm.getRegressionPotential = function (result) {
+      var value = ((result.YearHigh / result.LastTradePriceOnly) -1) * 100;
+      return value;
+    };
+
+    vm.getRelativeVolume = function (result) {
+      var value = (result.Volume / result.AverageDailyVolume) * 100;
+      return value;
+    };
+
     vm.adjustDividendDate = function (date) {
       if(!date)
         return date;
