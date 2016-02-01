@@ -1,9 +1,9 @@
 {
   "name": "asdasdasd",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "repository": {
-    "type": "",
-    "url": ""
+    "type": "grunt-autoprefixer",
+    "url": "http://github.com"
   },
   "dependencies": {
     "bower": "^1.6.5",
