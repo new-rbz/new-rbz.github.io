@@ -154,7 +154,7 @@
               if( vm.rawResults[r].symbol === vm.data[i].list[j]){
                 vm.rawResults[r].sector = vm.data[i].sector;
                 vm.rawResults[r].relativeVolume = parseFloat(vm.getRelativeVolume(vm.rawResults[r]));
-                if(isNaN(vm.rawResults[r].relativeVolume)){
+                if(isNaN(vm.rawResults[r].relativeVolume) || !isFinite(vm.rawResults[r].mungerBuffettRatio)){
                   vm.rawResults[r].relativeVolume = 0;
                 }
 
