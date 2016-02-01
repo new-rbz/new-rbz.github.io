@@ -2,17 +2,24 @@
   <div class="well">
     <div class="row">
       <div class="col-xs-6">
-          <select class="form-control" ng-model="vm.selectedSource" ng-change="vm.handleDataSourceChange()">
+          <select 
+            class="form-control" 
+            ng-model="vm.selectedSource" 
+            ng-change="vm.handleDataSourceChange()">
               <option sly-repeat="item in vm.sources">{{item}}</option>
           </select>
       </div>
     </div>
   </div>
   <tabset type="pills">
-    <tab sly-repeat="src in vm.data" heading="{{src.sector}}" ng-click="vm.tabSwitch(src.sector)">
+    <tab ng-repeat="src in vm.data" 
+         heading="{{src.sector}}" 
+         ng-click="vm.tabSwitch(src.sector)">
       <div class="animated fadeInUp row col-xs-12">
         <ul class="list-inline">
-          <li sly-repeat="ticker in src.list" class="col-xs-4 img-container">
+          <li 
+            sly-repeat="ticker in src.list" 
+            class="col-xs-4 img-container">
             <img 
               ng-click='vm.selected(ticker)' 
               class="candlestick img-responsive" 
