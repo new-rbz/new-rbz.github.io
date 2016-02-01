@@ -30,31 +30,30 @@
         </div>
         <div class="row">
           <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">Avg PE {{ vm.data | weightedAverageAll:'PERatio':'MarketCapitalization':'list' | number:2  }}</li>
-            <li role="presentation">&nbsp;|Avg PEG {{ vm.data | weightedAverageAll:'PEGRatio':'MarketCapitalization':'list' | number:2  }}</li>
-            <li role="presentation" class="active">&nbsp;|Avg PB {{ vm.data | weightedAverageAll:'PriceBook':'MarketCapitalization':'list' | number:2  }}</li>
-            <li role="presentation">&nbsp;|Avg PS {{ vm.data | weightedAverageAll:'PriceSales':'MarketCapitalization':'list' | number:2  }}</li>
-            <li role="presentation" class="active">&nbsp;|Avg Div {{ vm.data | weightedAverageAll:'DividendYield':'MarketCapitalization':'list' | number:2  }}</li>
-            <li role="presentation">&nbsp;|Avg MA50 {{ vm.data | weightedAverageAll:'PercentChangeFromFiftydayMovingAverage':'MarketCapitalization':'list' | number:2  }}</li>
-            <li role="presentation">&nbsp;|Avg MA200 {{ vm.data | weightedAverageAll:'PercentChangeFromTwoHundreddayMovingAverage':'MarketCapitalization':'list' | number:2  }}</li>
+            <li role="presentation" class="active">Avg PE {{ vm.rawResults | weightedAverage:'PERatio':'MarketCapitalization':'list' | number:2  }}</li>
+            <li role="presentation">&nbsp;|Avg PEG {{ vm.rawResults | weightedAverage:'PEGRatio':'MarketCapitalization':'list' | number:2  }}</li>
+            <li role="presentation" class="active">&nbsp;|Avg PB {{ vm.rawResults | weightedAverage:'PriceBook':'MarketCapitalization':'list' | number:2  }}</li>
+            <li role="presentation">&nbsp;|Avg PS {{ vm.rawResults | weightedAverage:'PriceSales':'MarketCapitalization':'list' | number:2  }}</li>
+            <li role="presentation" class="active">&nbsp;|Avg Div {{ vm.rawResults | weightedAverage:'DividendYield':'MarketCapitalization':'list' | number:2  }}</li>
+            <li role="presentation">&nbsp;|Avg MA50 {{ vm.rawResults | weightedAverage:'PercentChangeFromFiftydayMovingAverage':'MarketCapitalization':'list' | number:2  }}</li>
+            <li role="presentation">&nbsp;|Avg MA200 {{ vm.rawResults | weightedAverage:'PercentChangeFromTwoHundreddayMovingAverage':'MarketCapitalization':'list' | number:2  }}</li>
           </ul>
         </div>
       </div>
-
-<div>
-  <ul class="list-inline">
-    <li sly-repeat="row in vm.data"><button ng-class="{'btn-success': vm.currentsector === row.sector, 'btn-primary':vm.currentsector !== row.sector}" class="btn" ng-click="vm.changeSector(row.sector)">{{row.sector}}</button></li>
-  </ul>
-</div>
+      <div>
+        <ul class="list-inline">
+          <li sly-repeat="row in vm.data"><button ng-class="{'btn-success': vm.currentsector === row.sector, 'btn-primary':vm.currentsector !== row.sector}" class="btn" ng-click="vm.changeSector(row.sector)">{{row.sector}}</button></li>
+        </ul>
+      </div>
           <div class="row col-xs-12">
             <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation">Avg PE {{ row.list | weightedAverage:'PERatio':'MarketCapitalization' | number:2  }}</li>
-              <li role="presentation">&nbsp;|Avg PEG {{ row.list | weightedAverage:'PEGRatio':'MarketCapitalization' | number:2  }}</li>
-              <li role="presentation">&nbsp;|Avg PB {{ row.list | weightedAverage:'PriceBook':'MarketCapitalization' | number:2  }}</li>
-              <li role="presentation">&nbsp;|Avg PS {{ row.list | weightedAverage:'PriceSales':'MarketCapitalization' | number:2  }}</li>
-              <li role="presentation">&nbsp;|Avg Div {{ row.list | weightedAverage:'DividendYield':'MarketCapitalization' | number:2  }}</li>
-              <li role="presentation">&nbsp;|Avg MA50 {{ row.list | weightedAverage:'PercentChangeFromFiftydayMovingAverage':'MarketCapitalization' | number:2  }}</li>
-              <li role="presentation">&nbsp;|Avg MA200 {{ row.list | weightedAverage:'PercentChangeFromTwoHundreddayMovingAverage':'MarketCapitalization' | number:2  }}</li>
+              <li role="presentation">Avg PE {{ vm.rawResults | filter:{sector:vm.currentsector}  | weightedAverage:'PERatio':'MarketCapitalization' | number:2  }}</li>
+              <li role="presentation">&nbsp;|Avg PEG {{ vm.rawResults | filter:{sector:vm.currentsector}  | weightedAverage:'PEGRatio':'MarketCapitalization' | number:2  }}</li>
+              <li role="presentation">&nbsp;|Avg PB {{ vm.rawResults | filter:{sector:vm.currentsector}  | weightedAverage:'PriceBook':'MarketCapitalization' | number:2  }}</li>
+              <li role="presentation">&nbsp;|Avg PS {{ vm.rawResults | filter:{sector:vm.currentsector}  | weightedAverage:'PriceSales':'MarketCapitalization' | number:2  }}</li>
+              <li role="presentation">&nbsp;|Avg Div {{ vm.rawResults | filter:{sector:vm.currentsector}  | weightedAverage:'DividendYield':'MarketCapitalization' | number:2  }}</li>
+              <li role="presentation">&nbsp;|Avg MA50 {{ vm.rawResults | filter:{sector:vm.currentsector} | weightedAverage:'PercentChangeFromFiftydayMovingAverage':'MarketCapitalization' | number:2  }}</li>
+              <li role="presentation">&nbsp;|Avg MA200 {{ vm.rawResults | filter:{sector:vm.currentsector}  | weightedAverage:'PercentChangeFromTwoHundreddayMovingAverage':'MarketCapitalization' | number:2  }}</li>
             </ul>
           </div>
           <div class="row col-xs-12">

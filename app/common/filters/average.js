@@ -78,28 +78,10 @@
           weightValue = parseFloat(raw);
         }
 
-        if (filter) {
-          if (filter(item)) {
-            if (item[weight] && item[weight].indexOf("B") >= 0) {
-              weightValue *= 1000; // for billions
-            } // else it is millions
-
-            totalWeight += weightValue;
-            value = parseFloat(item[field]);
-            value = value ? value : 0;
-            sum += (value * weightValue);
-          }
-        }
-        else {
-          if (item[weight] && item[weight].indexOf("B") >= 0) {
-            weightValue *= 1000; // for billions
-          } // else it is millions
-
-          totalWeight += weightValue;
-          value = parseFloat(item[field]);
-          value = value ? value : 0;
-          sum += (value * weightValue);
-        }
+        totalWeight += weightValue;
+        value = parseFloat(item[field]);
+        value = value ? value : 0;
+        sum += (value * weightValue);
       }
     }
 

@@ -9,7 +9,7 @@
     </div>
   </div>
   <tabset type="pills">
-    <tab ng-repeat="src in vm.data" heading="{{src.sector}}" ng-click="vm.tabSwitch(src.sector)">
+    <tab sly-repeat="src in vm.data" heading="{{src.sector}}" ng-click="vm.tabSwitch(src.sector)">
       <div class="animated fadeInUp row col-xs-12">
         <ul class="list-inline">
           <li sly-repeat="ticker in src.list" class="col-xs-4 img-container">

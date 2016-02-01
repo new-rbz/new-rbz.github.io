@@ -154,22 +154,99 @@
               if( vm.rawResults[r].symbol === vm.data[i].list[j]){
                 vm.rawResults[r].sector = vm.data[i].sector;
                 vm.rawResults[r].relativeVolume = parseFloat(vm.getRelativeVolume(vm.rawResults[r]));
+                if(isNaN(vm.rawResults[r].relativeVolume)){
+                  vm.rawResults[r].relativeVolume = 0;
+                }
+
                 vm.rawResults[r].dailyPercentChange = parseFloat(vm.getDailyPercentChange(vm.rawResults[r]));
+                if(isNaN(vm.rawResults[r].dailyPercentChange)){
+                  vm.rawResults[r].dailyPercentChange = 0;
+                }
+
                 vm.rawResults[r].regressionPotential = parseFloat(vm.getRegressionPotential(vm.rawResults[r]));
+                if(isNaN(vm.rawResults[r].regressionPotential)){
+                  vm.rawResults[r].regressionPotential = 0;
+                }
+
                 vm.rawResults[r].mungerBuffettRatio = parseFloat(vm.getMungerBuffettRatio(vm.rawResults[r]));
+                
+                if(isNaN(vm.rawResults[r].mungerBuffettRatio) || !isFinite(vm.rawResults[r].mungerBuffettRatio)){
+                  vm.rawResults[r].mungerBuffettRatio = 0;
+                }
                 vm.rawResults[r].epsGrowth = parseFloat(vm.getEpsGrowth(vm.rawResults[r]));
+
+                if(isNaN(vm.rawResults[r].epsGrowth)){
+                  vm.rawResults[r].epsGrowth = 0;
+                }
+
                 vm.rawResults[r].fundamental = parseFloat( vm.evaluateFundamentalData(vm.rawResults[r]));
-                vm.rawResults[r].MarketCapitalization = parseFloat(vm.rawResults[r].MarketCapitalization);
+
+                if(isNaN(vm.rawResults[r].fundamental)){
+                  vm.rawResults[r].fundamental = 0;
+                }
+
+                vm.rawResults[r].MarketCapitalization = (vm.rawResults[r].MarketCapitalization && vm.rawResults[r].MarketCapitalization.toString().indexOf("B") >= 0) 
+                  ? parseFloat(vm.rawResults[r].MarketCapitalization) * 1000 : parseFloat(vm.rawResults[r].MarketCapitalization);
+              
+                if(isNaN(vm.rawResults[r].MarketCapitalization)){
+                  vm.rawResults[r].MarketCapitalization = 0;
+                }
                 vm.rawResults[r].LastTradePriceOnly = parseFloat(vm.rawResults[r].LastTradePriceOnly);
+                
+                if(isNaN(vm.rawResults[r].LastTradePriceOnly)){
+                  vm.rawResults[r].LastTradePriceOnly = 0;
+                }
                 vm.rawResults[r].PreviousClose = parseFloat(vm.rawResults[r].PreviousClose);
+                
+                if(isNaN(vm.rawResults[r].PreviousClose)){
+                  vm.rawResults[r].PreviousClose = 0;
+                }
                 vm.rawResults[r].ShortRatio = parseFloat(vm.rawResults[r].ShortRatio);
+                
+                if(isNaN(vm.rawResults[r].ShortRatio)){
+                  vm.rawResults[r].ShortRatio = 0;
+                }
                 vm.rawResults[r].EPSEstimateCurrentYear = parseFloat(vm.rawResults[r].EPSEstimateCurrentYear);
+                
+                if(isNaN(vm.rawResults[r].EPSEstimateCurrentYear)){
+                  vm.rawResults[r].EPSEstimateCurrentYear = 0;
+                }
+
                 vm.rawResults[r].epsGrowth = parseFloat(vm.rawResults[r].epsGrowth);
+
+                if(isNaN(vm.rawResults[r].epsGrowth)){
+                  vm.rawResults[r].epsGrowth = 0;
+                }
+
                 vm.rawResults[r].PriceBook = parseFloat(vm.rawResults[r].PriceBook);
+
+                if(isNaN(vm.rawResults[r].PriceBook)){
+                  vm.rawResults[r].PriceBook = 0;
+                }
+
                 vm.rawResults[r].PriceSales = parseFloat(vm.rawResults[r].PriceSales);
+
+                if(isNaN(vm.rawResults[r].PriceSales)){
+                  vm.rawResults[r].PriceSales = 0;
+                }
+                
                 vm.rawResults[r].PERatio = parseFloat(vm.rawResults[r].PERatio);
+
+                if(isNaN(vm.rawResults[r].PERatio)){
+                  vm.rawResults[r].PERatio = 0;
+                }
+
                 vm.rawResults[r].PEGRatio = parseFloat(vm.rawResults[r].PEGRatio);
+
+                if(isNaN(vm.rawResults[r].PEGRatio)){
+                  vm.rawResults[r].PEGRatio = 0;
+                }
+
                 vm.rawResults[r].DividendYield = parseFloat(vm.rawResults[r].DividendYield);
+
+                if(isNaN(vm.rawResults[r].DividendYield)){
+                  vm.rawResults[r].DividendYield = 0;
+                }
               }
             }
           }
