@@ -92,7 +92,7 @@
                   popover="<img height='300' width='600' src='http://finviz.com/chart.ashx?t={{result.symbol}}&ty=c&ta=1&p=d&s=l' style='vertical-align: middle !important;' />" >
                   <td>
                     <span class="label label-info">
-                      <a ng-click='vm.openFinviz(result.symbol)'>{{ result.symbol + (result.MarketCapitalization ? " " + result.MarketCapitalization : "") }}</a>
+                      <a ng-click='vm.openFinviz(result.symbol)'>{{ result.symbol}}&nbsp;{{ result.MarketCapitalization > 1000 ? (result.MarketCapitalization/1000).toString() + "B" : result.MarketCapitalization.toString() + "M"  }}</a>
                     </span>
                   </td>
                   <td>

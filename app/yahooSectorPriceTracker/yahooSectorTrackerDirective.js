@@ -154,7 +154,7 @@
               if( vm.rawResults[r].symbol === vm.data[i].list[j]){
                 vm.rawResults[r].sector = vm.data[i].sector;
                 vm.rawResults[r].relativeVolume = parseFloat(vm.getRelativeVolume(vm.rawResults[r]));
-                if(isNaN(vm.rawResults[r].relativeVolume) || !isFinite(vm.rawResults[r].mungerBuffettRatio)){
+                if(isNaN(vm.rawResults[r].relativeVolume) || !isFinite(vm.rawResults[r].relativeVolume)){
                   vm.rawResults[r].relativeVolume = 0;
                 }
 
@@ -191,8 +191,8 @@
                 if(isNaN(vm.rawResults[r].MarketCapitalization)){
                   vm.rawResults[r].MarketCapitalization = 0;
                 }
-                
-                vm.rawResults[r].MarketCapitalization = Math.round(vm.rawResults[r].MarketCapitalization)
+
+                vm.rawResults[r].MarketCapitalization = Math.round(vm.rawResults[r].MarketCapitalization);
 
                 vm.rawResults[r].LastTradePriceOnly = parseFloat(vm.rawResults[r].LastTradePriceOnly);
                 
