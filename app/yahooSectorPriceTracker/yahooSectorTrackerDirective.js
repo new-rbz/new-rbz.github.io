@@ -191,6 +191,9 @@
                 if(isNaN(vm.rawResults[r].MarketCapitalization)){
                   vm.rawResults[r].MarketCapitalization = 0;
                 }
+                
+                vm.rawResults[r].MarketCapitalization = Math.round(vm.rawResults[r].MarketCapitalization)
+
                 vm.rawResults[r].LastTradePriceOnly = parseFloat(vm.rawResults[r].LastTradePriceOnly);
                 
                 if(isNaN(vm.rawResults[r].LastTradePriceOnly)){
