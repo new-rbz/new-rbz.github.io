@@ -1,54 +1,54 @@
 ﻿<!DOCTYPE html>
 <html data-ng-app="randomProject">
 <head>
-    <title>The hole in the ocean</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-    <base href="/">
-    <link rel="stylesheet" href="/style/bootstrap.min.css">
-    <link rel="stylesheet" href="/bower_components/angular-motion/dist/angular-motion.min.css">
-    <link rel="stylesheet" href="/style/animate.min.css">
-    <link rel="stylesheet" href="/bower_components/AngularJS-Toaster/toaster.css">
-    <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/style/dashboard.css">
-    <link rel="stylesheet" href="/style/overview.css">
+  <title>The hole in the ocean</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+  <base href="/">
+  <link rel="stylesheet" href="/style/bootstrap.min.css">
+  <link rel="stylesheet" href="/bower_components/angular-motion/dist/angular-motion.min.css">
+  <link rel="stylesheet" href="/style/animate.min.css">
+  <link rel="stylesheet" href="/bower_components/AngularJS-Toaster/toaster.css">
+  <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/style/dashboard.css">
+  <link rel="stylesheet" href="/style/overview.css">
 
-    <script>
-        var timeout = 5000;
+  <script>
+    var timeout = 5000;
 
-        (function recursiveTimeoutPattern() {
-            if (typeof window.orientation !== 'undefined') {
-                return;
-            }
+    (function recursiveTimeoutPattern() {
+      if (typeof window.orientation !== 'undefined') {
+        return;
+      }
 
-            setTimeout(function () {
-                var imgs = document.getElementsByTagName('img'), substring = '&rand=';
+      setTimeout(function () {
+        var imgs = document.getElementsByTagName('img'), substring = '&rand=';
 
-                if (navigator && navigator.onLine) {
-                    for (var i = 0; i < imgs.length; i++) {
-                        var src = imgs[i].src.substring(0, 55);
-                        imgs[i].src = src.split(substring)[0] + substring + Math.random();;
-                    }
-                }
+        if (navigator && navigator.onLine) {
+          for (var i = 0; i < imgs.length; i++) {
+            var src = imgs[i].src.substring(0, 55);
+            imgs[i].src = src.split(substring)[0] + substring + Math.random();;
+          }
+        }
 
-                recursiveTimeoutPattern();
-            }, timeout);
-        })();
-    </script>
+        recursiveTimeoutPattern();
+      }, timeout);
+    })();
+  </script>
 </head>
 <body>
-<br />
-<br />
-<br />
-<div id='main' ng-cloak="">
-  <span>
-    <a onclick='window.open("http://finviz.com");'>Finviz</a>&nbsp;|&nbsp;
-    <a onclick='window.open("https://finance.yahoo.com/portfolio/pf_2/view/e");'>Yahoo Finance (Realtime)</a>&nbsp;|&nbsp;
-    <a onclick='window.open("https://twitter.com/Ralph_Acampora");'>Twitter</a>&nbsp;|&nbsp;
-    <a onclick='window.open("http://org4582.github.io/FinancialDashboard.html");'>Dashboard</a>&nbsp;|&nbsp;
-    <a onclick='window.open("http://org4582.github.io/FinancialIndicators.html");'>Indicators</a>
-  </span>&nbsp;&nbsp;&nbsp;
+  <br />
+  <br />
+  <br />
+  <div id='main' ng-cloak="">
+    <span>
+      <a onclick='window.open("http://finviz.com");'>Finviz</a>&nbsp;|&nbsp;
+      <a onclick='window.open("https://finance.yahoo.com/portfolio/pf_2/view/e");'>Yahoo Finance (Realtime)</a>&nbsp;|&nbsp;
+      <a onclick='window.open("https://twitter.com/Ralph_Acampora");'>Twitter</a>&nbsp;|&nbsp;
+      <a onclick='window.open("http://org4582.github.io/FinancialDashboard.html");'>Dashboard</a>&nbsp;|&nbsp;
+      <a onclick='window.open("http://org4582.github.io/FinancialIndicators.html");'>Indicators</a>
+    </span>&nbsp;&nbsp;&nbsp;
     <span>
       <a href="https://www.tradingview.com/chart/?symbol=ISSU">
         <img class="candlestick" src="http://finviz.com/mktstats_image.ashx?0&rev=635491895855156250">
@@ -57,111 +57,115 @@
       <img class="candlestick" src="http://finviz.com/mktstats_image.ashx?2&rev=635491895855156250">
       <img class="candlestick" src="http://finviz.com/mktstats_image.ashx?3&rev=635491895855156250">
       <img class="candlestick" src="http://finviz.com/mktstats_image.ashx?4&rev=635491895855156250">
-  </span>
-  <tabset>
-    <tab heading="main">
-    <div class="row col-xs-12">
-      <a onclick='window.open("https://www.tradingview.com/chart/?symbol=spx");'>
-         <img class="candlestick" src="http://finviz.com/image.ashx?sp500&rev=635491898253437500">
-      </a>
-      <a onclick='window.open("https://www.tradingview.com/chart/?symbol=NAS100");'>
-         <img class="candlestick" src="http://finviz.com/image.ashx?nasdaq&rev=635491898253437500">
-      </a>
-      <a onclick='window.open("https://www.tradingview.com/chart/?symbol=DOWI");'>
-        <img class="candlestick" src="http://finviz.com/image.ashx?dow&rev=635491898253437500">
-      </a>
-      <a onclick='window.open("https://www.tradingview.com/chart/?symbol=VIX");'>
-        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=VX&p=d1&s=m&rev=635741171362569851">
-      </a> 
-      </div>
-    </tab>
-    <tab heading="additional">
-          <div class="col-xs-12">
-            <a onclick='window.open("https://www.tradingview.com/chart/?symbol=UIX");'>
-          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=ER2&p=d1&s=m&rev=635741169554279766">
-        </a>
-        <a onclick='window.open("https://www.tradingview.com/chart/?symbol=MOY0");'>
-          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=EX&p=d1&s=m&rev=635741173162378118">
-        </a>
-        <a onclick='window.open("https://www.tradingview.com/chart/?symbol=JPN225");'>
-          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=NKD&p=d1&s=m&rev=635741173162378118">
-        </a>
+    </span>
+    <tabset>
+      <tab heading="Indicators">
+        <div class="row col-xs-12">
+          <a onclick='window.open("https://www.tradingview.com/chart/?symbol=spx");'>
+            <img class="candlestick" src="http://finviz.com/image.ashx?sp500&rev=635491898253437500">
+          </a>
+          <a onclick='window.open("https://www.tradingview.com/chart/?symbol=NAS100");'>
+            <img class="candlestick" src="http://finviz.com/image.ashx?nasdaq&rev=635491898253437500">
+          </a>
+          <a onclick='window.open("https://www.tradingview.com/chart/?symbol=DOWI");'>
+            <img class="candlestick" src="http://finviz.com/image.ashx?dow&rev=635491898253437500">
+          </a>
+          <a onclick='window.open("https://www.tradingview.com/chart/?symbol=VIX");'>
+            <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=VX&p=d1&s=m&rev=635741171362569851">
+          </a>
+        </div>
+      </tab>
+      <tab heading="Macro">
+        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=DX&p=d1&s=m&rev=635741178592664902">
         <a onclick='window.open("https://www.tradingview.com/chart/?symbol=VIX");'>
           <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=ZN&p=d1&s=m&rev=635741175830813962">
         </a>
-          </div>
-    </tab>
+        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=GC&p=d1&s=m&rev=635741176474639954">
+        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=SI&p=d1&s=m&rev=635741176474639954">
+      </tab>
+      <tab heading="Others">
+        <div class="col-xs-12">
+          <a onclick='window.open("https://www.tradingview.com/chart/?symbol=UIX");'>
+            <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=ER2&p=d1&s=m&rev=635741169554279766">
+          </a>
+          <a onclick='window.open("https://www.tradingview.com/chart/?symbol=MOY0");'>
+            <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=EX&p=d1&s=m&rev=635741173162378118">
+          </a>
+          <a onclick='window.open("https://www.tradingview.com/chart/?symbol=JPN225");'>
+            <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=NKD&p=d1&s=m&rev=635741173162378118">
+          </a>
+        </div>
+      </tab>
       <tab heading="Op Ex">
-        <a onclick='window.open("https://www.tradingview.com/chart/?symbol=USOIL");'>
-         <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=CL&p=d1&s=m&rev=635741174661809365">
-        </a>
-        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=HO&p=d1&s=m&rev=635741174661809365">
-        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=NG&p=d1&s=m&rev=635741174661809365">
-        <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=DX&p=d1&s=m&rev=635741178592664902"> 
-    </tab>
-    <tab heading="Cap Ex">
+        <div class="col-xs-12">
+          <a onclick='window.open("https://www.tradingview.com/chart/?symbol=USOIL");'>
+            <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=CL&p=d1&s=m&rev=635741174661809365">
+          </a>
+          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=HO&p=d1&s=m&rev=635741174661809365">
+          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=NG&p=d1&s=m&rev=635741174661809365">
+        </div>
+      </tab>
+      <tab heading="Cap Ex">
+        <div class="col-xs-12">
           <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=HG&p=d1&s=m&rev=635741176474639954">
-      <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=LB&p=d1&s=m&rev=635741176191492587">
-            <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=GC&p=d1&s=m&rev=635741176474639954">
-      <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=SI&p=d1&s=m&rev=635741176474639954">
-    </tab>
-  </tabset>
+          <img class="candlestick" src="http://finviz.com/fut_chart.ashx?t=LB&p=d1&s=m&rev=635741176191492587">
+        </div>
+      </tab>
+    </tabset>
+    <menu-directive></menu-directive>
+  </div>
+  <script type="text/javascript" src="/scripts/linq.js_ver2.2.0.2/linq.min.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="/bower_components/angular-cache/dist/angular-cache.min.js"></script>
+  <script type="text/javascript" src="/bower_components/angular-animate/angular-animate.min.js"></script>
+  <script type="text/javascript" src="/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+  <script type="text/javascript" src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+  <script type="text/javascript" src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="/bower_components/AngularJS-Toaster/toaster.js"></script>
+  <script type="text/javascript" src="/bower_components/highcharts-ng/dist/highcharts-ng.min.js"></script>
 
-<menu-directive></menu-directive>
+  <script type="text/javascript" src="/bower_components/sfly-scalyr/scalyr.js"></script>
 
-    <script type="text/javascript" src="/scripts/linq.js_ver2.2.0.2/linq.min.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="/bower_components/angular-cache/dist/angular-cache.min.js"></script>
-    <script type="text/javascript" src="/bower_components/angular-animate/angular-animate.min.js"></script>
-    <script type="text/javascript" src="/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-    <script type="text/javascript" src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script type="text/javascript" src="/bower_components/AngularJS-Toaster/toaster.js"></script>
-    <script type="text/javascript" src="/bower_components/highcharts-ng/dist/highcharts-ng.min.js"></script>
+  <!-- First module names are loaded -->
+  <script type="text/javascript" src="/app/moduleNames.js"></script>
+  <!-- Next: All external dependencies are registered -->
+  <script type="text/javascript" src="/app/bowerDependencies.core.js"></script>
 
-    <script type="text/javascript" src="/bower_components/sfly-scalyr/scalyr.js"></script>
+  <!-- Then: Module Declarations -->
+  <script type="text/javascript" src="/app/common/common.module.js"></script>
+  <script type="text/javascript" src="/app/yahooStockPriceTracker/yahooStockPriceTracker.module.js"></script>
+  <script type="text/javascript" src="/app/yahooSectorPriceTracker/yahooSectorTracker.module.js"></script>
+  <script type="text/javascript" src="/app/finvizChartViewer/finvizChartViewer.module.js"></script>
+  <script type="text/javascript" src="/app/guruFocused/guruFocused.module.js"></script>
 
+  <!-- Finally: the main module is loaded -->
+  <script type="text/javascript" src="/app/randomProject.module.js"></script>
 
-    <!-- First module names are loaded -->
-    <script type="text/javascript" src="/app/moduleNames.js"></script>
-    <!-- Next: All external dependencies are registered -->
-    <script type="text/javascript" src="/app/bowerDependencies.core.js"></script>
+  <!-- Last: App starts here, unordered after that -->
+  <script src="/app/common/logger.js"></script>
+  <script src="/app/common/config.exceptionHandler.js"></script>
+  <script src="/app/common/routing/routeData.js" type="text/javascript"></script>
 
-    <!-- Then: Module Declarations -->
-    <script type="text/javascript" src="/app/common/common.module.js"></script>
-    <script type="text/javascript" src="/app/yahooStockPriceTracker/yahooStockPriceTracker.module.js"></script>
-    <script type="text/javascript" src="/app/yahooSectorPriceTracker/yahooSectorTracker.module.js"></script>
-    <script type="text/javascript" src="/app/finvizChartViewer/finvizChartViewer.module.js"></script>
-    <script type="text/javascript" src="/app/guruFocused/guruFocused.module.js"></script>
+  <script src="/app/common/filters/average.js" type="text/javascript"></script>
+  <script src="/app/common/directives/autoFocusDirective.js" type="text/javascript"></script>
+  <script src="/app/common/directives/enterFormSubmitDirective.js" type="text/javascript"></script>
+  <script src="/app/common/menu/menuDirective.js" type="text/javascript"></script>
 
-    <!-- Finally: the main module is loaded -->
-    <script type="text/javascript" src="/app/randomProject.module.js"></script>
+  <script src="/app/common/routing/routeLoader.js" type="text/javascript"></script>
 
-    <!-- Last: App starts here, unordered after that -->
-    <script src="/app/common/logger.js"></script>
-    <script src="/app/common/config.exceptionHandler.js"></script>
-    <script src="/app/common/routing/routeData.js" type="text/javascript"></script>
+  <script src="/app/guruFocused/guruFocusedDirective.js" type="text/javascript"></script>
+  <script src="/app/common/httpServices/googleSheets/adapterFactory.js" type="text/javascript"></script>
+  <script src="/app/common/httpServices/googleSheets/googleSheetsService.js" type="text/javascript"></script>
+  <script src="/app/finvizChartViewer/finvizChartViewDirective.js" type="text/javascript"></script>
 
-    <script src="/app/common/filters/average.js" type="text/javascript"></script>
-    <script src="/app/common/directives/autoFocusDirective.js" type="text/javascript"></script>
-    <script src="/app/common/directives/enterFormSubmitDirective.js" type="text/javascript"></script>
-    <script src="/app/common/menu/menuDirective.js" type="text/javascript"></script>
+  <script src="/app/common/httpServices/yahooFinanceDataService.js" type="text/javascript"></script>
+  <script src="/app/common/httpServices/yahooFdsIntervalListener.js" type="text/javascript"></script>
+  <script src="/app/yahooStockPriceTracker/yahooStockViewDirective.js" type="text/javascript"></script>
 
-    <script src="/app/common/routing/routeLoader.js" type="text/javascript"></script>
-
-    <script src="/app/guruFocused/guruFocusedDirective.js" type="text/javascript"></script>
-    <script src="/app/common/httpServices/googleSheets/adapterFactory.js" type="text/javascript"></script>
-    <script src="/app/common/httpServices/googleSheets/googleSheetsService.js" type="text/javascript"></script>
-    <script src="/app/finvizChartViewer/finvizChartViewDirective.js" type="text/javascript"></script>
-
-    <script src="/app/common/httpServices/yahooFinanceDataService.js" type="text/javascript"></script>
-    <script src="/app/common/httpServices/yahooFdsIntervalListener.js" type="text/javascript"></script>
-    <script src="/app/yahooStockPriceTracker/yahooStockViewDirective.js" type="text/javascript"></script>
-
-    <script src="/app/yahooSectorPriceTracker/yahooSectorTracker.module.js" type="text/javascript"></script>
-    <script src="/app/yahooSectorPriceTracker/yahooFinanceMetricsService.js" type="text/javascript"></script>
-    <script src="/app/yahooSectorPriceTracker/yahooSectorTrackerDirective.js" type="text/javascript"></script>
+  <script src="/app/yahooSectorPriceTracker/yahooSectorTracker.module.js" type="text/javascript"></script>
+  <script src="/app/yahooSectorPriceTracker/yahooFinanceMetricsService.js" type="text/javascript"></script>
+  <script src="/app/yahooSectorPriceTracker/yahooSectorTrackerDirective.js" type="text/javascript"></script>
 </body>
 </html>
