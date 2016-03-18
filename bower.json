@@ -20,7 +20,8 @@
     "angular-ui-router": "^0.2.13",
     "angular-ui-bootstrap-bower": "^0.12.1",
     "sfly-scalyr": "^1.0.6",
-    "angular-material": "^1.0.5"
+    "angular-material": "^1.0.5",
+    "angular-material-icons": "^0.6.0"
   },
   "devDependencies": {
     "AngularJS-Toaster": "~0.4.15"
