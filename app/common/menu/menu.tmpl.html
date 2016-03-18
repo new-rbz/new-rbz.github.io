@@ -1,0 +1,47 @@
+<!--http://plnkr.co/edit/x10LqJ?p=preview this is how I will generate the menu, it can go deep-->
+<style>
+	div.navbar-collapse.collapse {
+		display: block;
+		overflow: hidden;
+		max-height: 0px;
+		-webkit-transition: max-height .3s ease;
+		-moz-transition: max-height .3s ease;
+		-o-transition: max-height .3s ease;
+		transition: max-height .3s ease;
+	}
+
+	div.navbar-collapse.collapse.in {
+		max-height: 2000px;
+	}
+
+  body > menu-directive > div > div > ul > li {
+    height: 1em !important;
+  }
+</style>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-ng-init="navCollapsed = true" data-ng-click="navCollapsed = !navCollapsed">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+        <a class="navbar-brand" href="overview.html#/detailedtracker"><i class="fa fa-bar-chart fa-lg"></i>&nbsp;The hole in the ocean</a>
+	</div>
+  <div class="collapse navbar-collapse" data-ng-class="!navCollapsed && 'in'">
+    <ul class="nav navbar-nav">
+      <li sly-repeat="x in vm.data.routes" data-ng-class="{ active : vm.ActiveTab === x.state }" heading="{{x.title}}">
+        <a data-ng-click="vm.go(x)">{{x.title}}</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<div class="row">
+<div class="col-xs-12">
+  <div ui-view class="horizontal-slide-animation"></div>
+</div>
+</div>
