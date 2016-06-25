@@ -5,20 +5,19 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "1.2.x",
-    "angular-route": "1.2.x",
-    "angular-loader": "1.2.x",
-    "angular-mocks": "~1.2.x",
-    "html5-boilerplate": "~4.3.0"
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "angular-loader": "~1.4.0",
+    "angular-mocks": "~1.4.0",
+    "html5-boilerplate": "~5.2.0"
   },
-  "_release": "de30ee955c",
+  "_release": "a50f4c8a7a",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "de30ee955c55ddf27b8fd15789ad18206bbbc285"
+    "commit": "a50f4c8a7a9c90942fac38aeb35ea1be183d2a76"
   },
   "_source": "git://github.com/angular/angular-seed.git",
   "_target": "*",
-  "_originalSource": "angular-seed",
-  "_direct": true
+  "_originalSource": "angular-seed"
 }

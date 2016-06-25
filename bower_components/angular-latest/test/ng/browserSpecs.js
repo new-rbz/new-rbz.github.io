@@ -57,7 +57,9 @@ function MockWindow(options) {
       return getHash(locationHref);
     },
     set hash(value) {
-      locationHref = stripHash(locationHref) + '#' + value;
+      // replace the hash with the new one (stripping off a leading hash if there is one)
+      // See hash setter spec: https://url.spec.whatwg.org/#urlutils-and-urlutilsreadonly-members
+      locationHref = stripHash(locationHref) + '#' + value.replace(/^#/,'');
     },
     replace: function(url) {
       locationHref = url;
@@ -193,7 +195,7 @@ describe('browser', function() {
     expect(browser.cookies).toBeDefined();
   });
 
-  describe('outstading requests', function() {
+  describe('outstanding requests', function() {
     it('should process callbacks immedietly with no outstanding requests', function() {
       var callback = jasmine.createSpy('callback');
       browser.notifyWhenNoOutstandingRequests(callback);

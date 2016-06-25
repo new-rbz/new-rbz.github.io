@@ -155,7 +155,7 @@ module.exports = function(grunt) {
     jscs: {
       src: ['src/**/*.js', 'test/**/*.js'],
       options: {
-        config: ".jscs.json"
+        config: ".jscsrc"
       }
     },
 
@@ -293,7 +293,7 @@ module.exports = function(grunt) {
 
     shell: {
       "npm-install": {
-        command: path.normalize('scripts/npm/install-dependencies.sh')
+        command: 'node scripts/npm/check-node-modules.js'
       },
 
       "promises-aplus-tests": {

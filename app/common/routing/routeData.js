@@ -18,29 +18,29 @@ var routeData = {
       'title': 'AdHoc Stock Viewer',
       'templateUrl' : '/app/yahooStockPriceTracker/stockViewer.tmpl.html',
       'controller': 'stockViewController'
-    },
-    {
+    }
+    , {
       'state': 'detailedtracker',
       'routeUrl': '/detailedtracker/{interval}',
       'title': 'Detailed Tracker',
       'templateUrl': '/app/yahooSectorPriceTracker/sectorViewer.tmpl.html',
       'controller': 'sectorViewController'
-    },
-    {
+    }
+    , {
       'state': 'totaltracker',
       'routeUrl': '/totaltracker/{interval}',
       'title': 'Total Tracker',
       'templateUrl': '/app/detailedViewer/detailedView.tmpl.html',
       'controller': 'sectorViewController'
-    },
-    {
+    }
+    , {
       'state': 'chartViewer',
       'routeUrl': '/chartViewer',
       'title': 'Chart Viewer',
       'templateUrl': '/app/finvizChartViewer/finvizChartView.tmpl.html',
       'controller': 'finvizChartViewController'
-    } //,
-    // {
+    }
+    // ,{
     //   'state': 'guruFocused',
     //   'routeUrl': '/guruFocused',
     //   'title': 'Guru Focused',
