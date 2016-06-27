@@ -55,7 +55,7 @@ vm.sources = [];
 
     vm.selected = function (ticker) {
       if (ticker) {
-        $window.open('http://finviz.com/quote.ashx?t=' + ticker, '_blank');
+        $window.open('https://www.tradingview.com/chart/?symbol=' + ticker, '_blank');
       }
     };
 
