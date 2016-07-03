@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "material/client/styles/main.css",
+    "inputFile": "material/client/styles/main.scss"
+  },
+  {
+    "outputFile": "material/client/styles/ui.css",
+    "inputFile": "material/client/styles/ui.scss"
+  },
+  {
+    "outputFile": "material/client/styles/bootstrap.css",
+    "inputFile": "material/client/styles/bootstrap.scss"
+  },
+  {
+    "outputFile": "Style/Site.css",
+    "inputFile": "Style/Site.scss"
+  },
+  {
+    "outputFile": "Style/styles.css",
+    "inputFile": "Style/styles.less"
+  }
+]
