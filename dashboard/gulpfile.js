@@ -7,6 +7,7 @@ var config = require('./gulp.config')();
 
 var browserSync = require('browser-sync');
 var superstatic = require('superstatic');
+  var $ = require('gulp-load-plugins')({ lazy: true })
 
 gulp.task('ts-lint', function() {
     return gulp.src(config.allTs)
@@ -34,7 +35,8 @@ gulp.task('compile-ts', function() {
 gulp.task('serve', ['ts-lint', 'compile-ts'], function() {
     	
     gulp.watch([config.allTs], ['ts-lint', 'compile-ts']);
-	
+	gulp.watch([config.allSass], ['compile-sass']);
+
     browserSync({
         port: 3000,
         files: ['index.html', 'app/**/*.js', 'app/**/*.html'],
@@ -49,5 +51,20 @@ gulp.task('serve', ['ts-lint', 'compile-ts'], function() {
         }
     });	
 });
+
+  gulp.task('compile-sass', function () {
+    var sassOptions = {
+      outputStyle: 'nested' // nested, expanded, compact, compressed
+    };
+
+    return gulp
+      .src([config.allSass])
+      .pipe($.plumber())
+      .pipe($.sourcemaps.init())
+      .pipe($.sass(sassOptions))
+      .pipe($.sourcemaps.write())
+      .pipe($.autoprefixer({ browsers: ['last 2 version', '> 5%'] }))
+      .pipe(gulp.dest('.'));
+  });
 
 gulp.task('default', ['serve']);
