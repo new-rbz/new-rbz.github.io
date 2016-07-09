@@ -3,7 +3,6 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Location} from '@angular/common';
 import {tokenNotExpired, JwtHelper} from 'angular2-jwt';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
-
 import {MdToolbar} from '@angular2-material/toolbar';
 
 declare var Auth0Lock;

@@ -1,4 +1,4 @@
-/// <reference path="../../models.ts"/>
+/// <reference path="../../models/todoItem.ts"/>
 
 import {Component, OnInit} from '@angular/core';
 import {FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, FormControl, AbstractControl} from '@angular/forms';
@@ -11,7 +11,7 @@ import { MdButton } from '@angular2-material/button';
 import { MdCheckbox } from '@angular2-material/checkbox';
 import { MdSpinner, MdProgressCircle } from '@angular2-material/progress-circle';
 
-import {TestComponent} from '../test/test'
+import {TestComponent} from '../test/test';
 
 @Component({
   selector: 'todo',
@@ -19,6 +19,7 @@ import {TestComponent} from '../test/test'
   templateUrl: './app/components/todo/todo.html',
   directives: [
     FORM_DIRECTIVES,
+    TestComponent,
     REACTIVE_FORM_DIRECTIVES,
     MdButton,
     MdCheckbox,

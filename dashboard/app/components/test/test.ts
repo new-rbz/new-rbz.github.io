@@ -29,7 +29,7 @@ export class TestComponent implements OnInit {
 
   constructor(fb: FormBuilder) {
     this.fb = fb;
-    this.title = "hello from test component";
+    this.title = 'hello from test component';
   }
 
   ngOnInit(): void {
