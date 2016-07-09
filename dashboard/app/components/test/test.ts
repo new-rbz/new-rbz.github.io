@@ -1,5 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, FormControl, AbstractControl} from '@angular/forms';
+import {
+      FORM_DIRECTIVES,
+      REACTIVE_FORM_DIRECTIVES,
+      FormBuilder,
+      FormGroup,
+      FormControl,
+      AbstractControl
+      } from '@angular/forms';
 import {Validators} from '@angular/forms';
 import { MdCard } from '@angular2-material/card';
 import { MdInput } from '@angular2-material/input';

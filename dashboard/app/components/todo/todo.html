@@ -12,10 +12,15 @@
 
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <div>
-        <md-input required placeholder="What do you need to do?" [formControl]="newTodo"></md-input>
+        <md-input 
+          required 
+          placeholder="What do you need to do?" 
+          [formControl]="newTodo"></md-input>
       </div>
 
-      <button md-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Add Todo</button>
+      <button md-raised-button color="primary" type="submit" [disabled]="!myForm.valid">
+        Add Todo
+      </button>
     </form>
 
     <md-checkbox (change)="toggleAll($event)">
