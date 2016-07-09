@@ -1,11 +1,7 @@
 import { provideRouter, RouterConfig } from '@angular/router';
-
-import { Todo } from './components/todo/todo';
-import { About } from './components/about/about';
-import { Profile } from './components/profile/profile';
-import {TestComponent } from './components/test/test';
-
 import { AuthGuard} from './auth-guard';
+
+import {About, Profile, TestComponent, Todo} from './components/index';
 
 export const appRoutes: RouterConfig = [
 	{ path: '', component: Todo },

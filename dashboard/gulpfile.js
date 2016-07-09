@@ -30,7 +30,7 @@ gulp.task('compile-ts', () => {
       .pipe(gulp.dest(config.tsOutputPath));
 });
 
-gulp.task('serve', ['ts-lint', 'compile-ts'], () => {
+gulp.task('serve', ['ts-lint', 'compile-ts', 'compile-sass'], () => {
   gulp.watch(config.allTs, ['ts-lint', 'compile-ts']);
   gulp.watch(config.allSass, ['compile-sass']);
 

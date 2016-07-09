@@ -1,5 +1,4 @@
-/// <reference path="../../models/todoItem.ts"/>
-
+/// <reference path="./models/todoItem.ts"/>
 import {Component, OnInit} from '@angular/core';
 import {
       FORM_DIRECTIVES,
@@ -10,7 +9,7 @@ import {
       AbstractControl
       } from '@angular/forms';
 import {Validators} from '@angular/forms';
-import {TodoItem} from '../../models/todoItem';
+import {TodoItem} from './models/todoItem';
 
 import { MdCard } from '@angular2-material/card';
 import { MdInput } from '@angular2-material/input';
