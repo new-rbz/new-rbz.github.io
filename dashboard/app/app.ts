@@ -20,9 +20,7 @@ export class AppComponent {
     location: Location;
     ngZone: NgZone;
 
-    constructor(
-      location: Location,
-      ngZone: NgZone) {
+    constructor(location: Location, ngZone: NgZone) {
         this.location = location;
         this.ngZone = ngZone;
     }

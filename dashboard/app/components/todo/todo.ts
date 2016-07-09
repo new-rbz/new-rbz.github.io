@@ -3,13 +3,15 @@
 import {Component, OnInit} from '@angular/core';
 import {FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, FormControl, AbstractControl} from '@angular/forms';
 import {Validators} from '@angular/forms';
-import {TodoItem} from '../../models';
+import {TodoItem} from '../../models/todoItem';
 
 import { MdCard } from '@angular2-material/card';
 import { MdInput } from '@angular2-material/input';
 import { MdButton } from '@angular2-material/button';
 import { MdCheckbox } from '@angular2-material/checkbox';
 import { MdSpinner, MdProgressCircle } from '@angular2-material/progress-circle';
+
+import {TestComponent} from '../test/test'
 
 @Component({
   selector: 'todo',
