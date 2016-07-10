@@ -3,7 +3,7 @@
 
 <!--<chart [options]="options"></chart>-->
 
-<input type="text" [(ngModel)]="twoWayBound">
+<input type="text" [(ngModel)]="twoWayBound" style="width:120px;" auto-grow>
 
   <select class="form-control" required>
     <option *ngFor="let o of states" [value]="o">{{o}}</option>
@@ -11,4 +11,8 @@
   <button (click)="submit()">Submit</button>
   <span>{{twoWayBound}}</span>
   <span>{{submitted}}</span>
+
+  <ul>
+    <li *ngFor="let item of myserviceitems">{{item}}</li>
+  </ul>
 </div>

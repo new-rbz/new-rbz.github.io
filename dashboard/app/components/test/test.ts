@@ -14,7 +14,15 @@ import { MdButton } from '@angular2-material/button';
 import { MdCheckbox } from '@angular2-material/checkbox';
 import { MdSpinner, MdProgressCircle } from '@angular2-material/progress-circle';
 
-import { CHART_DIRECTIVES, Highcharts, ChartComponent, ChartPointComponent, ChartSeriesComponent } from 'angular2-highcharts/index';
+import {
+  CHART_DIRECTIVES,
+  Highcharts,
+  ChartComponent, 
+  ChartPointComponent, 
+  ChartSeriesComponent } from 'angular2-highcharts/index';
+
+import {MyService} from './myservice';
+import {AutoGrowDirective} from './auto-grow.directive';
 
 @Component({
   selector: 'test',
@@ -29,36 +37,37 @@ import { CHART_DIRECTIVES, Highcharts, ChartComponent, ChartPointComponent, Char
     MdSpinner,
     MdProgressCircle,
     MdCard,
-    MdInput]
+    MdInput,
+    AutoGrowDirective],
+    providers: [MyService]
 })
 export class TestComponent implements OnInit {
   title: string;
-  fb: FormBuilder;
   myForm: FormGroup;
   newTodo: FormControl;
   twoWayBound : string;
   submitted : string;
   options: Object;
-
+  myserviceitems: string [];
   states : string[] = ['TX', 'NY', 'CA'];
 
   submit(): void {
     this.submitted = 'submitted';
   }
 
-  constructor(fb: FormBuilder) {
-    this.fb = fb;
+  constructor(private fb: FormBuilder, private myService : MyService) {}
+
+  ngOnInit(): void {
     this.title = 'hello from test component';
 
     this.options = {
             title : { text : 'simple chart' },
             series: [{
-                data: [29.9, 71.5, 106.4, 129.2],
+                data: [29.9, 71.5, 106.4, 129.2]
             }]
         };
-  }
 
-  ngOnInit(): void {
-    console.log('ngOnInit() called');
+    this.myserviceitems = this.myService.get();
+    console.log('TestComponent ngOnInit() called');
   }
 }

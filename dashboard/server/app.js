@@ -13,11 +13,11 @@ var jwtCheck = jwt({
 
 app.use('/api/quote', jwtCheck);
 
-app.get('/api/quote', function (req, res) {
+app.get('/api/quote',  (req, res) => {
   var rand = Math.floor(Math.random() * quotes.length);
   res.json(quotes[rand]);
 });
 
-app.listen(3002, function () {
+app.listen(3002, () => {
   console.log('Backend listening on port 3002!');
 });
