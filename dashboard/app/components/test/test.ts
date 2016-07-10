@@ -33,6 +33,14 @@ export class TestComponent implements OnInit {
   fb: FormBuilder;
   myForm: FormGroup;
   newTodo: FormControl;
+  twoWayBound : string;
+  submitted : string;
+
+  options : string[] = ['TX', 'NY', 'CA'];
+
+  submit(): void {
+    this.submitted = 'submitted';
+  }
 
   constructor(fb: FormBuilder) {
     this.fb = fb;
