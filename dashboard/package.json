@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
-  "scripts": {},
+  "scripts": {
+    "start" : "concurrent \"npm run tsc:w\" \"npm run lite\" ",
+    "tsc" : "tsc",
+    "tsc:w" : "tsc -w",
+    "lite" : "lite-server",
+    "typings" : "typings",
+    "postinstall" : "typings install"
+  },
   "devDependencies": {
     "browser-sync": "^2.9.3",
     "gulp": "^3.9.0",
