@@ -18,6 +18,8 @@
     '@angular2-material/sidenav' : 'node_modules/@angular2-material/sidenav',
     '@angular2-material/slide-toggle' : 'node_modules/@angular2-material/slide-toggle',
     '@angular2-material/tabs' : 'node_modules/@angular2-material/tabs',
+    'angular2-highcharts' : 'node_modules/angular2-highcharts/dist',
+    'highcharts/highstock.src':   'node_modules/highcharts/highstock.js',
     'app': 'app', // 'dist',
     'rxjs': 'node_modules/rxjs',
     'symbol-observable': 'node_modules/symbol-observable',
@@ -43,7 +45,8 @@
     '@angular2-material/tabs' : { main: 'tabs.js', defaultExtension: 'js'},
     'app': { main: 'boot.js', defaultExtension: 'js' },
     'rxjs': { defaultExtension: 'js' },
-    'symbol-observable': { main: 'index.js', defaultExtension: 'js' }
+    'symbol-observable': { main: 'index.js', defaultExtension: 'js' },
+    'angular2-highcharts' :       { main: 'index',format: 'cjs', defaultExtension: 'js' }
   };
 
   var packageNames = [
@@ -60,7 +63,7 @@
     'gestures',
     'live-announcer',
     'portal',
-    'overlay'
+    'overlay',
   ];
 
   // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }
