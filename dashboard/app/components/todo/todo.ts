@@ -18,6 +18,7 @@ import { MdCheckbox } from '@angular2-material/checkbox';
 import { MdSpinner, MdProgressCircle } from '@angular2-material/progress-circle';
 
 import {TestComponent} from '../test/test';
+import {FormComponent} from '../forms/form';
 
 @Component({
   selector: 'todo',
@@ -26,6 +27,7 @@ import {TestComponent} from '../test/test';
   directives: [
     FORM_DIRECTIVES,
     TestComponent,
+    FormComponent,
     REACTIVE_FORM_DIRECTIVES,
     MdButton,
     MdCheckbox,
