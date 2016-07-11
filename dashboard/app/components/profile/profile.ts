@@ -1,6 +1,5 @@
 import {Component, OnInit, OnDestroy, AfterContentInit} from '@angular/core';
-import {tokenNotExpired} from 'angular2-jwt';
-import {AuthHttp} from 'angular2-jwt';
+import {ProfileService} from './profile.service'
 
 @Component({
 	selector: 'profile',
@@ -8,14 +7,14 @@ import {AuthHttp} from 'angular2-jwt';
 	 <img src="{{profile.picture}}" style="width: 50px" /> {{profile.name}}    
    <h2>Chuck quote of the day</h2>
    {{quote}}
-	`
+	`,
+  providers: [ProfileService]
 })
 export class Profile implements OnInit, OnDestroy, AfterContentInit {
   profile: any;
   quote: any;
 
-  constructor(public authHttp: AuthHttp) {
-  }
+  constructor(private profileService : ProfileService){}
 
   ngOnInit(): void {
     console.log('ngOnInit() called');
@@ -32,14 +31,13 @@ export class Profile implements OnInit, OnDestroy, AfterContentInit {
   }
 
   getSecretThing() {
-    this.authHttp.get('http://localhost:3002/api/quote')
-      .subscribe(
+    this.profileService.getSecretThing().subscribe(
         data => {
-          console.log(data.json());
-          this.quote = data.json();
+          console.log("the quote:", data);
+          this.quote = data;
         },
-        err => console.log(err),
-        () => console.log('Complete')
-      );
+        err => console.log(err), 
+        () => console.log('Completed query for quote of the day.')
+    );
   }
 }

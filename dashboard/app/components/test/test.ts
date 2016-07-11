@@ -5,9 +5,9 @@ import {
       FormBuilder,
       FormGroup,
       FormControl,
-      AbstractControl
+      AbstractControl,
+      Validators
       } from '@angular/forms';
-import {Validators} from '@angular/forms';
 import { MdCard } from '@angular2-material/card';
 import { MdInput } from '@angular2-material/input';
 import { MdButton } from '@angular2-material/button';
