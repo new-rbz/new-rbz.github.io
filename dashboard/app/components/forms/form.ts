@@ -35,6 +35,7 @@ export class FormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   submit(): void {
+    console.log('submit clicked');
   }
 
   ngOnInit(): void {
@@ -48,7 +49,7 @@ export class FormComponent implements OnInit {
         zip: ['']
       })
     });
-    
+
     console.log('FormComponent ngOnInit() called');
   }
 }

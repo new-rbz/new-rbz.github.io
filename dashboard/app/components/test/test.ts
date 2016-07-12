@@ -17,8 +17,8 @@ import { MdSpinner, MdProgressCircle } from '@angular2-material/progress-circle'
 import {
   CHART_DIRECTIVES,
   Highcharts,
-  ChartComponent, 
-  ChartPointComponent, 
+  ChartComponent,
+  ChartPointComponent,
   ChartSeriesComponent } from 'angular2-highcharts/index';
 
 import {MyService} from './myservice';

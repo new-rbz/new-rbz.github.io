@@ -17,8 +17,7 @@ export class ProfileService {
       console.log(tmp);
       return tmp;
     })
-    .catch((err: any) => 
-    {
+    .catch((err: any) => {
       console.log(err);
       return Observable.throw(err);
     });

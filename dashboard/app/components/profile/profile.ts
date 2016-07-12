@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy, AfterContentInit} from '@angular/core';
-import {ProfileService} from './profile.service'
+import {ProfileService} from './profile.service';
 
 @Component({
 	selector: 'profile',
@@ -14,7 +14,7 @@ export class Profile implements OnInit, OnDestroy, AfterContentInit {
   profile: any;
   quote: any;
 
-  constructor(private profileService : ProfileService){}
+  constructor(private profileService : ProfileService) { }
 
   ngOnInit(): void {
     console.log('ngOnInit() called');
@@ -33,10 +33,10 @@ export class Profile implements OnInit, OnDestroy, AfterContentInit {
   getSecretThing() {
     this.profileService.getSecretThing().subscribe(
         data => {
-          console.log("the quote:", data);
+          console.log('the quote:', data);
           this.quote = data;
         },
-        err => console.log(err), 
+        err => console.log(err),
         () => console.log('Completed query for quote of the day.')
     );
   }
