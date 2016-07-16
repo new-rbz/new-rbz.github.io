@@ -2,17 +2,10 @@
 <h5>The Title is {{title}}</h5>
 
 <!--<chart [options]="options"></chart>-->
-
 <input type="text" [(ngModel)]="twoWayBound" style="width:120px;" auto-grow>
-
+<button (click)="submit()">Submit</button>
+<br>
   <select class="form-control" required>
-    <option *ngFor="let o of states" [value]="o">{{o}}</option>
+    <option *ngFor="let item of listTypes" [value]="item">{{item.Title}}</option>
   </select>
-  <button (click)="submit()">Submit</button>
-  <span>{{twoWayBound}}</span>
-  <span>{{submitted}}</span>
-
-  <ul>
-    <li *ngFor="let item of myserviceitems">{{item}}</li>
-  </ul>
 </div>

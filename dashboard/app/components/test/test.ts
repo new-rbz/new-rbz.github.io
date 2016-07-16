@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+/// <reference path="../../../typings/lodash/lodash.d.ts" />
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Observable, Subscription } from 'rxjs/Rx';
 import {
-      FORM_DIRECTIVES,
-      REACTIVE_FORM_DIRECTIVES,
-      FormBuilder,
-      FormGroup,
-      FormControl,
-      AbstractControl,
-      Validators
-      } from '@angular/forms';
+  FORM_DIRECTIVES,
+  REACTIVE_FORM_DIRECTIVES,
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  AbstractControl,
+  Validators
+  } from '@angular/forms';
 import { MdCard } from '@angular2-material/card';
 import { MdInput } from '@angular2-material/input';
 import { MdButton } from '@angular2-material/button';
@@ -20,9 +22,10 @@ import {
   ChartComponent,
   ChartPointComponent,
   ChartSeriesComponent } from 'angular2-highcharts/index';
-
-import {MyService} from './myservice';
+import { ListType } from './ListType'
+import {GoogleSheetsService } from './googleSheetsService';
 import {AutoGrowDirective} from './auto-grow.directive';
+import _ from 'lodash';
 
 @Component({
   selector: 'test',
@@ -39,7 +42,7 @@ import {AutoGrowDirective} from './auto-grow.directive';
     MdCard,
     MdInput,
     AutoGrowDirective],
-    providers: [MyService]
+    providers: [GoogleSheetsService]
 })
 export class TestComponent implements OnInit {
   title: string;
@@ -49,25 +52,25 @@ export class TestComponent implements OnInit {
   submitted : string;
   options: Object;
   myserviceitems: string [];
-  states : string[] = ['TX', 'NY', 'CA'];
+  listTypes : ListType[] = [];
+
+  constructor(private fb: FormBuilder, private svc:GoogleSheetsService, private changeDetector:ChangeDetectorRef ) {
+    this.title = 'hello from test component';
+  }
+
+  ngOnInit(): void {
+    this.getListTypes();
+    console.log('TestComponent ngOnInit() called');
+  }
 
   submit(): void {
     this.submitted = 'submitted';
   }
 
-  constructor(private fb: FormBuilder, private myService : MyService) {}
-
-  ngOnInit(): void {
-    this.title = 'hello from test component';
-
-    this.options = {
-            title : { text : 'simple chart' },
-            series: [{
-                data: [29.9, 71.5, 106.4, 129.2]
-            }]
-        };
-
-    this.myserviceitems = this.myService.get();
-    console.log('TestComponent ngOnInit() called');
+  getListTypes() : void {
+    this.svc.getListTypes( (results:ListType[]) => {
+       this.listTypes = _.each(results, x=> x.IsActive);
+      this.changeDetector.detectChanges();
+    });
   }
 }

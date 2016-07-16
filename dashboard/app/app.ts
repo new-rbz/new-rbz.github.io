@@ -25,7 +25,6 @@ export class AppComponent {
   }
 
   login() {
-    var self = this;
     this.lock.show((err: string, profile: string, id_token: string) => {
       if (err) {
         throw new Error(err);
@@ -40,7 +39,7 @@ export class AppComponent {
         this.jwtHelper.isTokenExpired(id_token)
       );
 
-      this.ngZone.run(() => self.loggedIn());
+      this.ngZone.run(() => this.loggedIn());
     });
   }
 

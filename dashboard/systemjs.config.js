@@ -1,5 +1,4 @@
 (function (global) {
-
   // map tells the System loader where to look for things
   var map = {
     'angular2-jwt': 'node_modules/angular2-jwt/angular2-jwt.js',
@@ -20,10 +19,11 @@
     '@angular2-material/tabs' : 'node_modules/@angular2-material/tabs',
     'angular2-highcharts' : 'node_modules/angular2-highcharts/dist',
     'highcharts/highstock.src':   'node_modules/highcharts/highstock.js',
-    'app': 'app', // 'dist',
+    'app': 'app',
     'rxjs': 'node_modules/rxjs',
     'symbol-observable': 'node_modules/symbol-observable',
-    '@angular': 'node_modules/@angular'
+    '@angular': 'node_modules/@angular',
+    'lodash': 'node_modules/lodash/lodash.js'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -46,7 +46,7 @@
     'app': { main: 'boot.js', defaultExtension: 'js' },
     'rxjs': { defaultExtension: 'js' },
     'symbol-observable': { main: 'index.js', defaultExtension: 'js' },
-    'angular2-highcharts' :       { main: 'index',format: 'cjs', defaultExtension: 'js' }
+    'angular2-highcharts' : { main: 'index',format: 'cjs', defaultExtension: 'js' },
   };
 
   var packageNames = [
