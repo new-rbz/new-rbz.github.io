@@ -7,6 +7,9 @@
   "installed": {
     "lodash/lodash.d.ts": {
       "commit": "415de78bb5108cd2c58078011819c26aa4fac3f9"
+    },
+    "jasmine/jasmine.d.ts": {
+      "commit": "415de78bb5108cd2c58078011819c26aa4fac3f9"
     }
   }
 }
