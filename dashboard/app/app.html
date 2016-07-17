@@ -17,6 +17,7 @@
     </div>  
   </md-toolbar>
   <md-sidenav-layout class="demo-sidenav-layout">
+    
     <md-sidenav #start (open)="myinput.focus()" mode="top">
       <a [routerLink]="['/']">Todo</a> 
       <br>
@@ -38,6 +39,7 @@
       <br>
       <button md-button (click)="end.close()">Close</button>
     </md-sidenav>
+
     <div class="demo-sidenav-content" style="padding-top:1em;">
       <div class="container" style="padding-right:1em; padding-left:1em;" >
         <md-card>
@@ -49,12 +51,10 @@
   </md-sidenav-layout>
 </div>
 
-
-
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-  <li disabled class="mdl-menu__item">Configure Alerts</li>
-  <li class="mdl-menu__item"><a *ngIf="loggedIn()" [routerLink]="['/profile']">Edit Profile</a></li>
-  <li *ngIf="loggedIn()" class="mdl-menu__item"> <a href="#"  (click)="logout()">Logout</a></li>
+  <li class="mdl-menu__item" disabled style="">Configure Alerts</li>
+  <li class="mdl-menu__item"><a [routerLink]="['/profile']" >Edit Profile</a></li>
+  <li class="mdl-menu__item"><a href="#"  (click)="logout()">Sign Out</a></li>
 </ul>
 
 <div class="mdl-tooltip" for="demo-menu-lower-right">
