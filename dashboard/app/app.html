@@ -17,6 +17,8 @@
       </div>  
     </md-toolbar>
     <md-sidenav #start (open)="myinput.focus()" mode="top">
+
+
       <a [routerLink]="['/']">Todo</a> 
       <br>
       <a [routerLink]="['/about', 'Hello world']">About</a>
@@ -25,9 +27,9 @@
       <br>
       <button md-button (click)="end.open()">Open End Side</button>
       <br>
-      <button md-button
-              (click)="start.mode = (start.mode == 'push' ? 'over' : (start.mode == 'over' ? 'side' : 'push'))">Toggle Mode</button>
+      <button md-button (click)="start.mode = (start.mode == 'push' ? 'over' : (start.mode == 'over' ? 'side' : 'push'))">Toggle Mode</button>
       <div>Mode: {{start.mode}}</div>
+      <button md-button class="md-primary" (click)="toggleProcessing()">toggle progress...</button>
       <br>
       <input #myinput>
     </md-sidenav>
@@ -38,12 +40,9 @@
       <button md-button (click)="end.close()">Close</button>
     </md-sidenav>
 
-    <div class="demo-sidenav-content" style="padding-top:1em;">
-      <div class="container" style="padding-right:1em; padding-left:1em;" >
-        <md-card>
-          <button md-button class="md-primary" (click)="toggleProcessing()">toggle progress...</button>
-          <router-outlet></router-outlet>
-        </md-card>
+    <div class="demo-sidenav-content" style="padding-top:0.75em;">
+      <div class="container" style="padding-right:0.5em; padding-left:0.5em;">
+        <router-outlet></router-outlet>
       </div>
     </div>
   </md-sidenav-layout>
