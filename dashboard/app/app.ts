@@ -18,7 +18,7 @@ import {
 
 import {ProfileService} from './components/profile/profile.service';
 
-import { Menu } from './common/components/menu/menu';
+// import { Menu } from './common/components/menu/menu';
 
 declare var Auth0Lock;
 
@@ -27,7 +27,7 @@ declare var Auth0Lock;
   templateUrl: './app/app.html',
   styleUrls: ['./app/app.css'],
 	directives: [
-    Menu,
+    // Menu,
     MDL,
     ROUTER_DIRECTIVES, 
     MdToolbar, 
