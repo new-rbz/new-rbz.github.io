@@ -21,6 +21,11 @@ md-toolbar {
  background-color: transparent !important;
 }
 
+.focusable:hover {
+      box-shadow: 3px 3px 1.5px #888888 !important; 
+      cursor: pointer; cursor: hand;
+}
+
 .alertable{
    box-shadow: 1px 1px 1px #888888;
 }
@@ -28,11 +33,6 @@ md-toolbar {
 .alertable:hover{
    box-shadow: 10px 10px 5px #888888;
    cursor: pointer; cursor: hand;
-}
-
-.focusable:hover {
-      box-shadow: 3px 3px 1.5px #888888 !important; 
-      cursor: pointer; cursor: hand;
 }
 
 .img-circle {
@@ -59,37 +59,4 @@ md-toolbar {
 .demo-fill-remaining {
   padding: 6px;
   flex: 1 1 auto;
-}
-
-.demo-grid-list {
-  width: 1100px;
-}
-
-.demo-grid-list>md-card {
-  margin: 16px 0;
-}
-
-.demo-grid-list>p {
-  margin: 16px;
-}
-
-.demo-grid-list>  .demo-basic-list md-grid-tile {
-  background: rgba(0, 0, 0, 0.32);
-}
-
-.demo-grid-list>img {
-  width: 350px;
-}
-
-.demo-progress-bar-container {
-  width: 100%;
-}
-
-.demo-progress-bar-margins {
-  margin: 20px 0;
-}
-
-.demo-progress-bar-spacer {
-  display: inline-block;
-  width: 50px;
 }

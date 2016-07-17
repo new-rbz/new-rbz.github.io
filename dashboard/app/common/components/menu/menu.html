@@ -1,13 +1,12 @@
 <div mdl>
-
-<md-progress-bar *ngIf="isProcessing" mode="indeterminate" class="demo-progress-bar-margins" style="padding:0 !important; margin:0 !important;"></md-progress-bar>
+  <md-progress-bar *ngIf="isProcessing" mode="indeterminate" class="demo-progress-bar-margins" style="padding:0 !important; margin:0 !important;"></md-progress-bar>
   <md-toolbar>
-    <button id="menu_icon" class="focusable md-primary">
+    <span id="menu_icon" class="focusable">
       <i 
       class="material-icons demo-toolbar-icon" 
       style="text-shadow: 1px 1px 1px #555,1px 1px 1.7px #888;" 
       (click)="start.toggle()">menu</i>
-    </button>
+    </span>
     <span style="text-shadow: 0px 0px 0px #222, 1px 1px 1.7px #444;" class="unselectable">&nbsp;&nbsp;Application Needs a Name&nbsp;</span> 
     <span class="demo-fill-remaining"></span>
     <span id="alerts" class="alertable material-icons mdl-badge mdl-badge--overlap" data-badge="12" (click)="end.toggle()">add_alert</span>
@@ -27,7 +26,9 @@
       <button md-button (click)="end.open()">Open End Side</button>
       <br>
       <button md-button
-              (click)="start.mode = (start.mode == 'push' ? 'over' : (start.mode == 'over' ? 'side' : 'push'))">Toggle Mode</button>
+              (click)="start.mode = (start.mode == 'push' ? 'over' : (start.mode == 'over' ? 'side' : 'push'))">
+            
+              Toggle Mode</button>
       <div>Mode: {{start.mode}}</div>
       <br>
       <input #myinput>
@@ -38,10 +39,13 @@
       <br>
       <button md-button (click)="end.close()">Close</button>
     </md-sidenav>
-    <div class="demo-sidenav-content" style="padding-top:1em;">
+    <br>
+    <div class="demo-sidenav-content">
       <div class="container" style="padding-right:1em; padding-left:1em;" >
         <md-card>
+
           <button md-button class="md-primary" (click)="toggleProcessing()">toggle progress...</button>
+
           <router-outlet></router-outlet>
         </md-card>
       </div>
