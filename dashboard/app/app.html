@@ -1,23 +1,21 @@
 <div mdl>
-
-<md-progress-bar *ngIf="isProcessing" mode="indeterminate" class="demo-progress-bar-margins" style="padding:0 !important; margin:0 !important;"></md-progress-bar>
-  <md-toolbar>
-    <button id="menu_icon" class="focusable md-primary">
-      <i 
-      class="material-icons demo-toolbar-icon" 
-      style="text-shadow: 1px 1px 1px #555,1px 1px 1.7px #888;" 
-      (click)="start.toggle()">menu</i>
-    </button>
-    <span style="text-shadow: 0px 0px 0px #222, 1px 1px 1.7px #444;" class="unselectable">&nbsp;&nbsp;Application Needs a Name&nbsp;</span> 
-    <span class="demo-fill-remaining"></span>
-    <span id="alerts" class="alertable material-icons mdl-badge mdl-badge--overlap" data-badge="12" (click)="end.toggle()">add_alert</span>
-    <div>
-      <img *ngIf="loggedIn()" src="{{profile.picture}}" style="width: 50px; margin-left:1em;" class="img-circle" id="demo-menu-lower-right" />
-      <a href="#" *ngIf="!loggedIn()" (click)="login()">Login</a>
-    </div>  
-  </md-toolbar>
-  <md-sidenav-layout class="demo-sidenav-layout">
-    
+  <md-sidenav-layout class="demo-sidenav-layout unselectable">
+    <md-progress-bar *ngIf="isProcessing" mode="indeterminate" class="demo-progress-bar-margins" style="padding:0 !important; margin:0 !important;"></md-progress-bar>
+    <md-toolbar>
+      <button id="menu_icon" class="focusable md-primary">
+        <i 
+        class="material-icons demo-toolbar-icon" 
+        style="text-shadow: 1px 1px 1px #555,1px 1px 1.7px #888;" 
+        (click)="start.toggle()">menu</i>
+      </button>
+      <span style="text-shadow: 0px 0px 0px #222, 1px 1px 1.7px #444;" class="unselectable">&nbsp;&nbsp;Application Needs a Name&nbsp;</span> 
+      <span class="demo-fill-remaining"></span>
+      <span id="alerts" class="alertable material-icons mdl-badge mdl-badge--overlap" data-badge="12" (click)="end.toggle()">add_alert</span>
+      <div>
+        <img *ngIf="loggedIn()" src="{{profile.picture}}" style="width: 50px; margin-left:1em;" class="img-circle unselectable" id="demo-menu-lower-right" />
+        <a href="#" *ngIf="!loggedIn()" (click)="login()">Login</a>
+      </div>  
+    </md-toolbar>
     <md-sidenav #start (open)="myinput.focus()" mode="top">
       <a [routerLink]="['/']">Todo</a> 
       <br>
