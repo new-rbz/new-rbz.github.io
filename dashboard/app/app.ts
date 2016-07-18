@@ -1,9 +1,11 @@
 import {Component, bind, NgZone, OnInit, OnDestroy, AfterContentInit} from '@angular/core';
 import {NgFor, Location, LocationStrategy, HashLocationStrategy} from '@angular/common';
-import {ROUTER_DIRECTIVES} from '@angular/router';
+import {ROUTER_DIRECTIVES, RouterConfig} from '@angular/router';
 import {FORM_DIRECTIVES} from '@angular/forms';
 
 import {tokenNotExpired, JwtHelper} from 'angular2-jwt';
+
+import { APP_ROUTER_PROVIDER} from './routes';
 
 import { MDL } from './common/index';
 import { 
@@ -14,11 +16,12 @@ import {
     MdButton,
     MdIcon,
     MdProgressBar,
-    MdIconRegistry } from './common/index';
+    MdIconRegistry, 
+    MD_LIST_DIRECTIVES,
+    AppRouteProvider,
+    RouterAndMenuItem } from './common/index';
 
-import {ProfileService} from './components/profile/profile.service';
-
-// import { Menu } from './common/components/menu/menu';
+import { ProfileService } from './components/profile/profile.service';
 
 declare var Auth0Lock;
 
@@ -27,76 +30,39 @@ declare var Auth0Lock;
   templateUrl: './app/app.html',
   styleUrls: ['./app/app.css'],
 	directives: [
-    // Menu,
     MDL,
     ROUTER_DIRECTIVES, 
     MdToolbar, 
     MD_SIDENAV_DIRECTIVES, 
     MdButton, 
     MD_GRID_LIST_DIRECTIVES,
+    MD_LIST_DIRECTIVES,
     MD_CARD_DIRECTIVES,
     MdIcon,
     MdProgressBar,
     FORM_DIRECTIVES,
     NgFor],
-  providers: [ProfileService, MdIconRegistry]
+  providers: [ProfileService, MdIconRegistry, AppRouteProvider]
 })
 export class AppComponent implements OnInit, OnDestroy, AfterContentInit {
   lock = new Auth0Lock('T1wdQrDposGW5BisaKViC0Cu9CuxtR0c', 'towfeek.eu.auth0.com');
   jwtHelper: JwtHelper = new JwtHelper();
+  links: RouterAndMenuItem[];
   location: Location;
   ngZone: NgZone;
   profile: any;
-
   isProcessing:boolean;
-
-  public toggleProcessing(){
-    this.isProcessing = !this.isProcessing;
-  }
-
-    determinateProgressValue: number = 30;
-  bufferProgressValue: number = 30;
-  bufferBufferValue: number = 40;
-
-  stepDeterminateProgressVal(val: number) {
-    this.determinateProgressValue += val;
-  }
-
-  stepBufferProgressVal(val: number) {
-    this.bufferProgressValue += val;
-  }
-
-  stepBufferBufferVal(val: number) {
-    this.bufferBufferValue += val;
-  }
-
-  tiles: any[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  alerts: any[] = [
+    {name: '9:00AM: MSFT Vol. 200%, Price Down 14%', link: '#', description:'Panic and run!'},
+    {name: '9:02AM: UVXY Vol. 650%, Price Up 38%', link: '#', description:'Panic and run!'},
+    {name: '9:03AM: VIX Vol. -, Price Up 40%', link: '#', description:'Panic and run!'},
+    {name: '9:04AM: UWTI Vol. 600%, Price Up 34%', link: '#', description:'Panic and run!'}
   ];
 
-  dogs: Object[] = [
-    { name: 'Porter', human: 'Kara' },
-    { name: 'Mal', human: 'Jeremy' },
-    { name: 'Koby', human: 'Igor' },
-    { name: 'Razzle', human: 'Ward' },
-    { name: 'Molly', human: 'Rob' },
-    { name: 'Husi', human: 'Matias' },
-  ];
-
-  fixedCols: number = 4;
-  fixedRowHeight: number = 100;
-  ratioGutter: number = 1;
-  fitListHeight: string = '400px';
-  ratio: string = '4:1';
-
-  addTileCols() { this.tiles[2].cols++; }
-
-  constructor(location: Location, ngZone: NgZone, private profileService : ProfileService) {
+  constructor(location: Location, ngZone: NgZone, private profileService : ProfileService, private appRoutesProvider:AppRouteProvider) {
     this.location = location;
     this.ngZone = ngZone;
+    this.links = appRoutesProvider.getAppRoutes();
   }
 
   ngOnInit(): void {
@@ -110,6 +76,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterContentInit {
 
   ngAfterContentInit() {
     console.log('ngAfterContentInit() called');
+  }
+
+  public toggleProcessing(){
+    this.isProcessing = !this.isProcessing;
   }
 
   login() {

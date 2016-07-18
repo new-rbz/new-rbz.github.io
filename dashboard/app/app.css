@@ -1,7 +1,36 @@
+.demo {
+  display: flex;
+  flex-flow: row wrap;
+
+
+}
+
+ .demo>md-list, md-nav-list {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    width: 99%;
+    margin: 20px 20px 0 0;
+
+  }
+  .demo>h2 {
+    margin-top: 20px;
+  }
+
+  .demo>md-icon {
+    color: rgba(0, 0, 0, 0.12);
+  }
+
+  .demo>[md-list-icon] {
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+.demo-secondary-text {
+  color: rgba(0, 0, 0, 0.54);
+}
+
 .mdl-menu__item>a {
   text-decoration:none; color:#888;
 }
-
 
 md-toolbar {
   box-shadow: 3px 3px 1.5px #888888 !important; 
