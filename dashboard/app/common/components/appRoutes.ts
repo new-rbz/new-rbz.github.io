@@ -1,4 +1,4 @@
-import { AuthGuard} from '../../auth-guard';
+import { AuthGuard} from '../security/auth-guard';
 import { About, Profile, TestComponent, Todo } from '../../components/index';
 import { RouterAndMenuItem } from './RouterAndMenuItem';
 

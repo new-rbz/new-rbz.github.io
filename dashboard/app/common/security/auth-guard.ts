@@ -1,5 +1,6 @@
-import {tokenNotExpired} from 'angular2-jwt';
 import { Injectable } from '@angular/core';
+import {tokenNotExpired} from 'angular2-jwt';
+
 import {
   CanActivate,
   ActivatedRouteSnapshot,

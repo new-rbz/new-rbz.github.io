@@ -5,9 +5,9 @@ import {FORM_DIRECTIVES} from '@angular/forms';
 
 import {tokenNotExpired, JwtHelper} from 'angular2-jwt';
 
-import { APP_ROUTER_PROVIDER} from './common/components/routes';
+import { APP_ROUTER_PROVIDER} from '../../common/components/routes';
 
-import { MDL } from './common/index';
+import { MDL } from '../../common/index';
 import { 
     MdToolbar, 
     MD_SIDENAV_DIRECTIVES, 
@@ -19,16 +19,16 @@ import {
     MdIconRegistry, 
     MD_LIST_DIRECTIVES,
     AppRouteProvider,
-    RouterAndMenuItem } from './common/index';
+    RouterAndMenuItem } from '../../common/index';
 
-import { ProfileService } from './components/profile/profile.service';
+import { ProfileService } from '../profile/profile.service';
 
 declare var Auth0Lock;
 
 @Component({
 	selector: 'app-root',
-  templateUrl: './app/app.html',
-  styleUrls: ['./app/app.css'],
+  templateUrl: './app/components/appRoot/app.html',
+  styleUrls: ['./app/components/appRoot/app.css'],
 	directives: [
     MDL,
     ROUTER_DIRECTIVES, 

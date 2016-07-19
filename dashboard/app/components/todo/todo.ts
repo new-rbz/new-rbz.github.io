@@ -1,14 +1,15 @@
 /// <reference path="./models/todoItem.ts"/>
 import {Component, OnInit} from '@angular/core';
 import {
-      FORM_DIRECTIVES,
-      REACTIVE_FORM_DIRECTIVES,
-      FormBuilder,
-      FormGroup,
-      FormControl,
-      AbstractControl
-      } from '@angular/forms';
-import {Validators} from '@angular/forms';
+  FORM_DIRECTIVES,
+  REACTIVE_FORM_DIRECTIVES,
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  AbstractControl,
+  Validators
+} from '@angular/forms';
+
 import {TodoItem} from './models/todoItem';
 
 import { MdCard } from '@angular2-material/card';
