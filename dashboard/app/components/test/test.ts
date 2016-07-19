@@ -23,7 +23,7 @@ import {
   ChartComponent,
   ChartPointComponent,
   ChartSeriesComponent } from 'angular2-highcharts/index';
-import { ListType } from './ListType'
+import { ListType } from './ListType';
 import {GoogleSheetsService } from './googleSheetsService';
 import {AutoGrowDirective} from './auto-grow.directive';
 import _ from 'lodash';
@@ -55,7 +55,10 @@ export class TestComponent implements OnInit {
   myserviceitems: string [];
   listTypes : ListType[] = [];
 
-  constructor(private fb: FormBuilder, private svc:GoogleSheetsService, private changeDetector:ChangeDetectorRef ) {
+  constructor(
+    private fb: FormBuilder,
+    private svc:GoogleSheetsService,
+    private changeDetector:ChangeDetectorRef ) {
     this.title = 'hello from test component';
   }
 
@@ -70,7 +73,7 @@ export class TestComponent implements OnInit {
 
   getListTypes() : void {
     this.svc.getListTypes( (results:ListType[]) => {
-       this.listTypes = _.each(results, x=> x.IsActive);
+      this.listTypes = _.each(results, x => x.IsActive);
       this.changeDetector.detectChanges();
     });
   }

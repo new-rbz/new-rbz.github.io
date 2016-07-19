@@ -7,13 +7,15 @@ export class YahooDataService {
   constructor(private http:Http) {}
 
   public issueRequest (query : string) : Observable<Response> {
-      return this.http.get("http://query.yahooapis.com/v1/public/yql?q=" 
-      + query + 
-      "&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys")
+      return this.http.get('http://query.yahooapis.com/v1/public/yql?q='
+      + query +
+      '&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys');
       // .subscribe((data) => {
       //   if (!data.json().query.results || !data.json().query.results.quote) {
-      //     toaster.pop('error', 'Invalid Response: Results returned null', 'This is most likely caused by having bad ticker symbol');
-      //     console.error('Invalid Response: Results returned null. This is most likely caused by having bad ticker symbol');
+      //     toaster.pop('error', 'Invalid Response: Results returned null', 
+      // 'This is most likely caused by having bad ticker symbol');
+      //     console.error('Invalid Response: Results returned null. 
+      // This is most likely caused by having bad ticker symbol');
       //     console.error(query, data);
       //   }
 

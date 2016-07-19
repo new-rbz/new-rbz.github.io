@@ -8,15 +8,15 @@ import {tokenNotExpired, JwtHelper} from 'angular2-jwt';
 import { APP_ROUTER_PROVIDER} from '../../common/components/routing/routes';
 
 import { MDL } from '../../common/index';
-import { 
-    MdToolbar, 
-    MD_SIDENAV_DIRECTIVES, 
+import {
+    MdToolbar,
+    MD_SIDENAV_DIRECTIVES,
     MD_GRID_LIST_DIRECTIVES,
     MD_CARD_DIRECTIVES,
     MdButton,
     MdIcon,
     MdProgressBar,
-    MdIconRegistry, 
+    MdIconRegistry,
     MD_LIST_DIRECTIVES,
     AppRouteProvider,
     RouterAndMenuItem } from '../../common/index';
@@ -31,10 +31,10 @@ declare var Auth0Lock;
   styleUrls: ['./app/components/appRoot/app.css'],
 	directives: [
     MDL,
-    ROUTER_DIRECTIVES, 
-    MdToolbar, 
-    MD_SIDENAV_DIRECTIVES, 
-    MdButton, 
+    ROUTER_DIRECTIVES,
+    MdToolbar,
+    MD_SIDENAV_DIRECTIVES,
+    MdButton,
     MD_GRID_LIST_DIRECTIVES,
     MD_LIST_DIRECTIVES,
     MD_CARD_DIRECTIVES,
@@ -59,7 +59,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterContentInit {
     {name: '9:04AM: UWTI Vol. 600%, Price Up 34%', link: '#', description:'Panic and run!'}
   ];
 
-  constructor(location: Location, ngZone: NgZone, private profileService : ProfileService, private appRoutesProvider:AppRouteProvider) {
+  constructor(
+    location: Location,
+    ngZone: NgZone,
+    private profileService : ProfileService,
+    private appRoutesProvider:AppRouteProvider) {
     this.location = location;
     this.ngZone = ngZone;
     this.links = appRoutesProvider.getAppRoutes();
@@ -78,7 +82,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterContentInit {
     console.log('ngAfterContentInit() called');
   }
 
-  public toggleProcessing(){
+  public toggleProcessing() {
     this.isProcessing = !this.isProcessing;
   }
 
