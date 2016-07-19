@@ -4,7 +4,7 @@ import {bind, provide} from '@angular/core';
 import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {AppComponent} from './components/appRoot/app';
 import {provideForms, disableDeprecatedForms} from '@angular/forms';
-import {APP_ROUTER_PROVIDER} from './common/components/routes';
+import {APP_ROUTER_PROVIDER} from './common/components/routing/routes';
 import {HTTP_PROVIDERS, Http, JSONP_PROVIDERS} from '@angular/http';
 import {AuthHttp, AuthConfig} from 'angular2-jwt';
 import {AuthGuard} from './common/security/auth-guard';

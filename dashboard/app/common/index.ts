@@ -18,5 +18,5 @@ export * from '@angular2-material/toolbar/toolbar';
 export * from './components/mdl';
 //export * from './errorHandling/index';
 
-export {AppRouteProvider} from './components/appRoutes';
-export * from './components/RouterAndMenuItem';
+export {AppRouteProvider} from './components/routing/appRoutes';
+export * from './components/routing/RouterAndMenuItem';

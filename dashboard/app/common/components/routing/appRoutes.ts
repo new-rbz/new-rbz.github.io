@@ -1,5 +1,5 @@
-import { AuthGuard} from '../security/auth-guard';
-import { About, Profile, TestComponent, Todo } from '../../components/index';
+import { AuthGuard} from '../../security/auth-guard';
+import { About, Profile, TestComponent, Todo } from '../../../components/index';
 import { RouterAndMenuItem } from './RouterAndMenuItem';
 
 export class AppRouteProvider {
