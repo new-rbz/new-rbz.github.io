@@ -1,6 +1,5 @@
 /// <reference path="./models/todoItem.ts"/>
 import {Component, OnInit} from '@angular/core';
-import {$WebSocket} from 'angular2-websocket/angular2-websocket';
 import {
   FORM_DIRECTIVES,
   REACTIVE_FORM_DIRECTIVES,
@@ -39,7 +38,6 @@ import {FormComponent} from '../forms/form';
     MdInput]
 })
 export class Todo implements OnInit {
-  webSocket:$WebSocket;
   todos: Array<TodoItem>;
   fb: FormBuilder;
   myForm: FormGroup;
@@ -54,8 +52,6 @@ export class Todo implements OnInit {
   }
 
   ngOnInit(): void {
-    this.webSocket = new $WebSocket("http://localhost:4080/");
-    this.webSocket.send({message:'hello world'});
 
     console.log('ngOnInit() called');
   }
