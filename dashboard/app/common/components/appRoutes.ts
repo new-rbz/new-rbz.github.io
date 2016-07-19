@@ -8,7 +8,7 @@ export class AppRouteProvider {
       { name:'To do Items', icon:'schedule', link:'/', path:'', component:Todo },
       { name:'About', icon:'launch', link:'/about/sample text', path:'about/:id', component:About },
       { name:'Profile', icon:'account_circle', link:'/profile', path:'profile', component:Profile, canActivate:[AuthGuard] },
-      { name:'Me Learning Ng2', icon:'accessible', link:'/test', path:'test', component:TestComponent, canActivate:[AuthGuard] },
+      { name:'Me Learning Ng2', icon:'accessible', link:'/test', path:'test', component:TestComponent },
     ];
 
     return appRoutes;

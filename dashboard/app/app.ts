@@ -5,7 +5,7 @@ import {FORM_DIRECTIVES} from '@angular/forms';
 
 import {tokenNotExpired, JwtHelper} from 'angular2-jwt';
 
-import { APP_ROUTER_PROVIDER} from './routes';
+import { APP_ROUTER_PROVIDER} from './common/components/routes';
 
 import { MDL } from './common/index';
 import { 

@@ -3,10 +3,8 @@ import {bootstrap} from '@angular/platform-browser-dynamic';
 import {bind, provide} from '@angular/core';
 import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {AppComponent} from './app';
-
 import {provideForms, disableDeprecatedForms} from '@angular/forms';
-
-import {APP_ROUTER_PROVIDER} from './routes';
+import {APP_ROUTER_PROVIDER} from './common/components/routes';
 import {HTTP_PROVIDERS, Http, JSONP_PROVIDERS} from '@angular/http';
 import {AuthHttp, AuthConfig} from 'angular2-jwt';
 import {AuthGuard} from './auth-guard';
