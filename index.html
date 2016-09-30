@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Rtmng2</title>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    var token = false;  
+  </script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous"
+    integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1">
+  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="text/javascript" src="//www.google.com/jsapi"></script>
+
+  <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js"></script>
+  <script src="//ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js"></script>
+  <script src="//apis.google.com/js/client.js?onload=checkAuth"></script>
+  <script src="//cdn.auth0.com/js/lock-8.1.min.js"></script>
+  <script>
+    var timeout = 60000;
+
+    function recursiveTimeoutPattern() {
+      if (typeof window.orientation !== "undefined") {
+        return;
+      }
+
+      setTimeout(function () {
+        var imgs = document.getElementsByTagName("img"), substring = "&rand=";
+
+        if (navigator && navigator.onLine) {
+          for (var i = 0; i < imgs.length; i++) {
+            if(imgs[i].src.indexOf('https://s.gravatar.com/avatar/') === -1){
+              var src = imgs[i].src.substring(0, 55);
+              imgs[i].src = src.split(substring)[0] + substring + Math.random();
+            }
+          }
+        }
+
+        recursiveTimeoutPattern();
+      }, timeout);
+    }
+
+    recursiveTimeoutPattern();
+  </script>
+</head>
+
+<body>
+  <app-root>Loading...</app-root>
+<script type="text/javascript" src="inline.js"></script><script type="text/javascript" src="styles.1a05b902873f3b742dfd.bundle.js"></script><script type="text/javascript" src="scripts.873f13be085692100890.bundle.js"></script><script type="text/javascript" src="main.3a256fb6e4a14055efad.bundle.js"></script></body>
+
+</html>

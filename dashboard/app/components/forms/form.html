@@ -1,9 +1,0 @@
-Forms Forms forms loaded....
-
-<form [formGroup]="registerForm">
-  <div>
-    <label>Firstname:</label>
-    <input type="text" formControlName="firstname">
-    <p *ngIf="registerForm.controls.firstname.dirty && registerForm.controls.firstname.errors" style="color:red;">This field is required!</p>
-  </div>
-</form>
