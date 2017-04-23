@@ -1,54 +1,35 @@
 <!doctype html>
 <html>
-
 <head>
-  <title>Rtmng2</title>
+  <title>Dashboard</title>
   <base href="/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>
-    var token = false;  
-  </script>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous"
-    integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1">
-  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-blue.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <script type="text/javascript" src="//www.google.com/jsapi"></script>
-
-  <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js"></script>
-  <script src="//ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js"></script>
   <script src="//apis.google.com/js/client.js?onload=checkAuth"></script>
   <script src="//cdn.auth0.com/js/lock-8.1.min.js"></script>
+  <script src="src/scripts/recursiveTimeoutPattern.js"></script>
   <script>
-    var timeout = 60000;
+    var token = false;
 
-    function recursiveTimeoutPattern() {
-      if (typeof window.orientation !== "undefined") {
-        return;
-      }
+    recursiveTimeoutPattern(function () {
+      var imgs = document.getElementsByTagName("img"), substring = "&rand=";
 
-      setTimeout(function () {
-        var imgs = document.getElementsByTagName("img"), substring = "&rand=";
-
-        if (navigator && navigator.onLine) {
-          for (var i = 0; i < imgs.length; i++) {
-            if(imgs[i].src.indexOf('https://s.gravatar.com/avatar/') === -1){
-              var src = imgs[i].src.substring(0, 55);
-              imgs[i].src = src.split(substring)[0] + substring + Math.random();
-            }
+      if (navigator && navigator.onLine) {
+        for (var i = 0; i < imgs.length; i++) {
+          if (imgs[i].src.indexOf('https://s.gravatar.com/avatar/') === -1) {
+            var src = imgs[i].src.substring(0, 55);
+            imgs[i].src = src.split(substring)[0] + substring + Math.random();
           }
         }
-
-        recursiveTimeoutPattern();
-      }, timeout);
-    }
-
-    recursiveTimeoutPattern();
+      }
+    }, 15000);
   </script>
-</head>
-
+<link href="styles.f28833cacaace21fce9e.bundle.css" rel="stylesheet"/></head>
 <body>
-  <app-root>Loading...</app-root>
-<script type="text/javascript" src="inline.js"></script><script type="text/javascript" src="styles.2ae83e84ec6813cb80a7.bundle.js"></script><script type="text/javascript" src="scripts.a888f24682c51a3644b4.bundle.js"></script><script type="text/javascript" src="main.ba24bb04cd670a3eab2e.bundle.js"></script></body>
-
+  <dashboard-root>Loading...</dashboard-root>
+<script type="text/javascript" src="inline.97b7d657c531c3280c2d.bundle.js"></script><script type="text/javascript" src="polyfills.b0bbc78975a954818b7f.bundle.js"></script><script type="text/javascript" src="scripts.6ea9fa3c7b07c76dc307.bundle.js"></script><script type="text/javascript" src="vendor.d4304e51277a92004c10.bundle.js"></script><script type="text/javascript" src="main.1043444a0e3d5ac752d1.bundle.js"></script></body>
 </html>
