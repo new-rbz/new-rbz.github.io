@@ -213,8 +213,9 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavigationComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AppModule_services_status_notification_service__ = __webpack_require__("../../../../../src/app/modules/AppModule/services/status-notification.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AppModule_services_status_notification_service__ = __webpack_require__("../../../../../src/app/modules/AppModule/services/status-notification.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -227,19 +228,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var NavigationComponent = (function () {
-    function NavigationComponent(routeSource, statusNotificationService, changeDetector) {
+    function NavigationComponent(router, routeSource, statusNotificationService, changeDetector) {
+        this.router = router;
         this.routeSource = routeSource;
         this.statusNotificationService = statusNotificationService;
         this.changeDetector = changeDetector;
     }
     NavigationComponent.prototype.ngOnInit = function () {
         var _this = this;
+        var that = this;
         this.routeData = this.routeSource.getMenuItems();
+        var defaultRoute = this.routeData.find(function (x) { return x.isDefault; });
         this.statusNotificationService.statusUpdate.subscribe(function (x) {
             _this.isInprogress = x;
             _this.changeDetector.detectChanges();
         });
+        setTimeout(function () {
+            that.router.navigate(['/' + defaultRoute.path]);
+        }, 500);
     };
     return NavigationComponent;
 }());
@@ -251,10 +259,10 @@ NavigationComponent = __decorate([
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
         changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared__["AppRouteProvider"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared__["AppRouteProvider"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__AppModule_services_status_notification_service__["a" /* StatusNotificationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__AppModule_services_status_notification_service__["a" /* StatusNotificationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["AppRouteProvider"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["AppRouteProvider"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__AppModule_services_status_notification_service__["a" /* StatusNotificationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__AppModule_services_status_notification_service__["a" /* StatusNotificationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object])
 ], NavigationComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=navigation.component.js.map
 
 /***/ }),
@@ -4222,17 +4230,15 @@ var store = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["createStore"])(__WEBPACK
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__("../../../../lodash/lodash.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_modules_AppModule_rxjs_testing_rxjs_testing_component__ = __webpack_require__("../../../../../src/app/modules/AppModule/rxjs-testing/rxjs-testing.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_modules_StockDashboardModule_components_stockdashboard_stockdashboard_component__ = __webpack_require__("../../../../../src/app/modules/StockDashboardModule/components/stockdashboard/stockdashboard.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_modules_NewsReaderModule_news_reader_news_reader_component__ = __webpack_require__("../../../../../src/app/modules/NewsReaderModule/news-reader/news-reader.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_modules_form_tests_reactive_form_reactive_form_component__ = __webpack_require__("../../../../../src/app/modules/form-tests/reactive-form/reactive-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_modules_StockDashboardModule_components_stockdashboard_stockdashboard_component__ = __webpack_require__("../../../../../src/app/modules/StockDashboardModule/components/stockdashboard/stockdashboard.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_modules_NewsReaderModule_news_reader_news_reader_component__ = __webpack_require__("../../../../../src/app/modules/NewsReaderModule/news-reader/news-reader.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_modules_form_tests_reactive_form_reactive_form_component__ = __webpack_require__("../../../../../src/app/modules/form-tests/reactive-form/reactive-form.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -4252,21 +4258,17 @@ AppRouteProvider.appRoutes = [
         name: 'Financial Dashboard',
         icon: 'trending_up',
         path: 'dashboard',
-        component: __WEBPACK_IMPORTED_MODULE_3_app_modules_StockDashboardModule_components_stockdashboard_stockdashboard_component__["a" /* StockdashboardComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_2_app_modules_StockDashboardModule_components_stockdashboard_stockdashboard_component__["a" /* StockdashboardComponent */],
         isDefault: true
-    },
-    {
-        path: '',
-        component: __WEBPACK_IMPORTED_MODULE_2_app_modules_AppModule_rxjs_testing_rxjs_testing_component__["a" /* RxjsTestingComponent */]
     },
     {
         name: 'News',
         icon: 'business',
         path: 'news',
-        component: __WEBPACK_IMPORTED_MODULE_4_app_modules_NewsReaderModule_news_reader_news_reader_component__["a" /* NewsReaderComponent */]
+        component: __WEBPACK_IMPORTED_MODULE_3_app_modules_NewsReaderModule_news_reader_news_reader_component__["a" /* NewsReaderComponent */]
     },
     {
-        component: __WEBPACK_IMPORTED_MODULE_5_app_modules_form_tests_reactive_form_reactive_form_component__["a" /* ReactiveFormComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_4_app_modules_form_tests_reactive_form_reactive_form_component__["a" /* ReactiveFormComponent */],
         name: 'Reactive Forms',
         icon: 'assignment',
         path: 'reactiveforms'
