@@ -4,7 +4,11 @@ webpackJsonp(["main"],{
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
-	return new Promise(function(resolve, reject) { reject(new Error("Cannot find module '" + req + "'.")); });
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
 }
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
@@ -20,7 +24,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_routing__ = __webpack_require__("../../../../../src/app/shared/routing/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AppModule_services_status_notification_service__ = __webpack_require__("../../../../../src/app/modules/AppModule/services/status-notification.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__StockDashboardModule_stock_dashboard_module__ = __webpack_require__("../../../../../src/app/modules/StockDashboardModule/stock-dashboard.module.ts");
@@ -37,7 +41,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 // import { OverlayPositionBuilder } from '@angular/material/typings/core/overlay/position/overlay-position-builder';
 
-var appRoutes = __WEBPACK_IMPORTED_MODULE_2__shared__["AppRouteProvider"].appRoutes;
+var appRoutes = __WEBPACK_IMPORTED_MODULE_2__shared_routing__["AppRouteProvider"].appRoutes;
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
     }
@@ -214,7 +218,7 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavigationComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_routing__ = __webpack_require__("../../../../../src/app/shared/routing/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AppModule_services_status_notification_service__ = __webpack_require__("../../../../../src/app/modules/AppModule/services/status-notification.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -259,7 +263,7 @@ NavigationComponent = __decorate([
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
         changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared__["AppRouteProvider"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared__["AppRouteProvider"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__AppModule_services_status_notification_service__["a" /* StatusNotificationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__AppModule_services_status_notification_service__["a" /* StatusNotificationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__shared_routing__["AppRouteProvider"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_routing__["AppRouteProvider"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__AppModule_services_status_notification_service__["a" /* StatusNotificationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__AppModule_services_status_notification_service__["a" /* StatusNotificationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object])
 ], NavigationComponent);
 
 var _a, _b, _c, _d;
@@ -681,7 +685,7 @@ var StockDashboardReducer = (function (_super) {
 /***/ "../../../../../src/app/modules/StockDashboardModule/components/chart-viewer/chart-viewer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"\" style=\"overflow-x: scroll; width:100vw;\">\n<md-tab-group>\n  <md-tab *ngFor=\"let group of groupedYahooResults$ | async\" label=\"{{ group[0].group}} ({{group.length}})\">\n    <a *ngFor=\"let company of group\" (click)=\"rowClicked(company)\"\n      target=\"_blank\">\n      <img src=\"http://finviz.com/chart.ashx?t={{company.symbol}}&ty=c&ta=1&p=d&s=l\" />\n    </a>\n  </md-tab>\n</md-tab-group>\n</div>\n"
+module.exports = "<div id=\"\" style=\"overflow-x: scroll; width:97vw;\">\n<md-tab-group>\n  <md-tab *ngFor=\"let group of groupedYahooResults$ | async\" label=\"{{ group[0].group}} ({{group.length}})\">\n    <a *ngFor=\"let company of group\" (click)=\"rowClicked(company)\"\n      target=\"_blank\">\n      <img src=\"http://finviz.com/chart.ashx?t={{company.symbol}}&ty=c&ta=1&p=d&s=l\" />\n    </a>\n  </md-tab>\n</md-tab-group>\n</div>\n"
 
 /***/ }),
 
@@ -881,7 +885,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/modules/StockDashboardModule/components/stock-view-changer/stock-view-changer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<md-grid-list\n  cols=\"3\"\n  rowHeight=\"35px\"\n  style=\"width: 40em;\">\n  <md-grid-tile\n    [colspan]=\"1\"\n    [rowspan]=\"1\">\n    <md-slide-toggle\n    (change)=\"onChange()\"\n    [(ngModel)]=\"showTable\"\n    color=\"primary\"\n    labelPosition=\"before\">{{showTable ? 'Table' : 'Charts'}}</md-slide-toggle>\n  </md-grid-tile>\n\n  <md-grid-tile\n    [colspan]=\"1\"\n    [rowspan]=\"1\">\n    <md-select\n      (change)=\"onChange()\"\n      [(ngModel)]=\"selectedStockList\"\n      style=\"padding-left: 2em; width: 12em;\">\n      <md-option\n        *ngFor=\"let list of stockListHeaders$ | async\"\n        [value]=\"list.title\"\n        style=\"color:#fff !important;\">{{list.title}}</md-option>\n    </md-select>\n  </md-grid-tile>\n\n  <md-grid-tile \n    *ngIf=\"showTable\"\n    [colspan]=\"1\"\n    [rowspan]=\"1\">\n    <md-slide-toggle\n      (change)=\"onChange()\"\n      [(ngModel)]=\"showTechnical\"\n      color=\"accent\"\n      labelPosition=\"before\">{{showTechnical ? 'Technical' : 'Fundamentals'}}</md-slide-toggle>\n  </md-grid-tile>\n</md-grid-list>\n"
+module.exports = "<md-grid-list\n  cols=\"3\"\n  rowHeight=\"35px\"\n  style=\"width: 40em;\">\n  <md-grid-tile\n    [colspan]=\"1\"\n    [rowspan]=\"1\">\n    <md-slide-toggle\n    (ngModelChange)=\"onShowTableChange($event)\"\n    [ngModel]=\"showTable\"\n    color=\"primary\"\n    labelPosition=\"before\">{{showTable ? 'Table' : 'Charts'}}</md-slide-toggle>\n  </md-grid-tile>\n\n  <md-grid-tile\n    [colspan]=\"1\"\n    [rowspan]=\"1\">\n    <md-select\n      (ngModelChange)=\"onListChange($event)\"\n      [ngModel]=\"selectedStockList\"\n      style=\"padding-left: 2em; width: 12em;\">\n      <md-option\n        *ngFor=\"let list of stockListHeaders$ | async\"\n        [value]=\"list.title\"\n        style=\"color:#fff !important;\">{{list.title}}</md-option>\n    </md-select>\n  </md-grid-tile>\n\n  <md-grid-tile\n    *ngIf=\"showTable\"\n    [colspan]=\"1\"\n    [rowspan]=\"1\">\n    <md-slide-toggle\n      (ngModelChange)=\"onTechnicalChange($event)\"\n      [ngModel]=\"showTechnical\"\n      color=\"accent\"\n      labelPosition=\"before\">{{showTechnical ? 'Technical' : 'Fundamentals'}}</md-slide-toggle>\n  </md-grid-tile>\n</md-grid-list>\n"
 
 /***/ }),
 
@@ -926,7 +930,22 @@ var StockViewChangerComponent = (function () {
             _this.showTechnical = x.showTechnical;
         });
     };
-    StockViewChangerComponent.prototype.onChange = function () {
+    StockViewChangerComponent.prototype.onListChange = function ($event) {
+        this.selectedStockList = $event;
+        this.ngRedux.dispatch({
+            type: __WEBPACK_IMPORTED_MODULE_3__shared__["Actions"].StockDashboardActions.TABLE_VIEW_STATE_CHANGE,
+            tableState: new __WEBPACK_IMPORTED_MODULE_4__models__["a" /* TableViewState */](this.selectedStockList, this.showTable, this.showTechnical),
+        });
+    };
+    StockViewChangerComponent.prototype.onShowTableChange = function ($event) {
+        this.showTable = $event;
+        this.ngRedux.dispatch({
+            type: __WEBPACK_IMPORTED_MODULE_3__shared__["Actions"].StockDashboardActions.TABLE_VIEW_STATE_CHANGE,
+            tableState: new __WEBPACK_IMPORTED_MODULE_4__models__["a" /* TableViewState */](this.selectedStockList, this.showTable, this.showTechnical),
+        });
+    };
+    StockViewChangerComponent.prototype.onTechnicalChange = function ($event) {
+        this.showTechnical = $event;
         this.ngRedux.dispatch({
             type: __WEBPACK_IMPORTED_MODULE_3__shared__["Actions"].StockDashboardActions.TABLE_VIEW_STATE_CHANGE,
             tableState: new __WEBPACK_IMPORTED_MODULE_4__models__["a" /* TableViewState */](this.selectedStockList, this.showTable, this.showTechnical),
@@ -1819,7 +1838,7 @@ var _a, _b;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormTestsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared__ = __webpack_require__("../../../../../src/app/shared/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_shared_routing__ = __webpack_require__("../../../../../src/app/shared/routing/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_modules_form_tests_reactive_form_reactive_form_component__ = __webpack_require__("../../../../../src/app/modules/form-tests/reactive-form/reactive-form.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_modules_form_tests_reactive_form_DialogResultExampleDialog__ = __webpack_require__("../../../../../src/app/modules/form-tests/reactive-form/DialogResultExampleDialog.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_modules_form_tests_moduleForSpec__ = __webpack_require__("../../../../../src/app/modules/form-tests/moduleForSpec.ts");
@@ -1851,7 +1870,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var appRoutes = __WEBPACK_IMPORTED_MODULE_2_app_shared__["AppRouteProvider"].appRoutes;
+var appRoutes = __WEBPACK_IMPORTED_MODULE_2_app_shared_routing__["AppRouteProvider"].appRoutes;
 var moduleParams = Object.assign({}, __WEBPACK_IMPORTED_MODULE_5_app_modules_form_tests_moduleForSpec__["a" /* template */]);
 moduleParams.imports.push(__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */].forRoot(appRoutes));
 moduleParams.bootstrap = [__WEBPACK_IMPORTED_MODULE_3_app_modules_form_tests_reactive_form_reactive_form_component__["a" /* ReactiveFormComponent */]];
@@ -3382,7 +3401,6 @@ ChannelService = __decorate([
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__yahooDataService__ = __webpack_require__("../../../../../src/app/shared/dataServices/yahooDataService/index.ts");
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_4__yahooDataService__, "Actions")) __webpack_require__.d(__webpack_exports__, "Actions", function() { return __WEBPACK_IMPORTED_MODULE_4__yahooDataService__["Actions"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_4__yahooDataService__, "AppRouteProvider")) __webpack_require__.d(__webpack_exports__, "AppRouteProvider", function() { return __WEBPACK_IMPORTED_MODULE_4__yahooDataService__["AppRouteProvider"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_4__yahooDataService__, "CustomErrorHandler")) __webpack_require__.d(__webpack_exports__, "CustomErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_4__yahooDataService__["CustomErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_4__yahooDataService__, "StockAnalysisService")) __webpack_require__.d(__webpack_exports__, "StockAnalysisService", function() { return __WEBPACK_IMPORTED_MODULE_4__yahooDataService__["StockAnalysisService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_4__yahooDataService__, "YahooDataService")) __webpack_require__.d(__webpack_exports__, "YahooDataService", function() { return __WEBPACK_IMPORTED_MODULE_4__yahooDataService__["YahooDataService"]; });
@@ -3559,7 +3577,6 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__YahooQuote__ = __webpack_require__("../../../../../src/app/shared/dataServices/yahooDataService/YahooQuote.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__YahooQuote___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__YahooQuote__);
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__YahooQuote__, "Actions")) __webpack_require__.d(__webpack_exports__, "Actions", function() { return __WEBPACK_IMPORTED_MODULE_1__YahooQuote__["Actions"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__YahooQuote__, "AppRouteProvider")) __webpack_require__.d(__webpack_exports__, "AppRouteProvider", function() { return __WEBPACK_IMPORTED_MODULE_1__YahooQuote__["AppRouteProvider"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__YahooQuote__, "CustomErrorHandler")) __webpack_require__.d(__webpack_exports__, "CustomErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_1__YahooQuote__["CustomErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__YahooQuote__, "StockAnalysisService")) __webpack_require__.d(__webpack_exports__, "StockAnalysisService", function() { return __WEBPACK_IMPORTED_MODULE_1__YahooQuote__["StockAnalysisService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__YahooQuote__, "store")) __webpack_require__.d(__webpack_exports__, "store", function() { return __WEBPACK_IMPORTED_MODULE_1__YahooQuote__["store"]; });
@@ -3671,7 +3688,6 @@ CustomErrorHandler = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components__ = __webpack_require__("../../../../../src/app/shared/components/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components__);
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__components__, "Actions")) __webpack_require__.d(__webpack_exports__, "Actions", function() { return __WEBPACK_IMPORTED_MODULE_0__components__["Actions"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__components__, "AppRouteProvider")) __webpack_require__.d(__webpack_exports__, "AppRouteProvider", function() { return __WEBPACK_IMPORTED_MODULE_0__components__["AppRouteProvider"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__components__, "CustomErrorHandler")) __webpack_require__.d(__webpack_exports__, "CustomErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_0__components__["CustomErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__components__, "GoogleSheetsService")) __webpack_require__.d(__webpack_exports__, "GoogleSheetsService", function() { return __WEBPACK_IMPORTED_MODULE_0__components__["GoogleSheetsService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__components__, "StockAnalysisService")) __webpack_require__.d(__webpack_exports__, "StockAnalysisService", function() { return __WEBPACK_IMPORTED_MODULE_0__components__["StockAnalysisService"]; });
@@ -3679,7 +3695,6 @@ CustomErrorHandler = __decorate([
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__components__, "store")) __webpack_require__.d(__webpack_exports__, "store", function() { return __WEBPACK_IMPORTED_MODULE_0__components__["store"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dataServices__ = __webpack_require__("../../../../../src/app/shared/dataServices/index.ts");
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__dataServices__, "Actions")) __webpack_require__.d(__webpack_exports__, "Actions", function() { return __WEBPACK_IMPORTED_MODULE_1__dataServices__["Actions"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__dataServices__, "AppRouteProvider")) __webpack_require__.d(__webpack_exports__, "AppRouteProvider", function() { return __WEBPACK_IMPORTED_MODULE_1__dataServices__["AppRouteProvider"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__dataServices__, "CustomErrorHandler")) __webpack_require__.d(__webpack_exports__, "CustomErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_1__dataServices__["CustomErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__dataServices__, "GoogleSheetsService")) __webpack_require__.d(__webpack_exports__, "GoogleSheetsService", function() { return __WEBPACK_IMPORTED_MODULE_1__dataServices__["GoogleSheetsService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__dataServices__, "StockAnalysisService")) __webpack_require__.d(__webpack_exports__, "StockAnalysisService", function() { return __WEBPACK_IMPORTED_MODULE_1__dataServices__["StockAnalysisService"]; });
@@ -3695,25 +3710,16 @@ CustomErrorHandler = __decorate([
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__redux__ = __webpack_require__("../../../../../src/app/shared/redux/index.ts");
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_6__redux__, "Actions")) __webpack_require__.d(__webpack_exports__, "Actions", function() { return __WEBPACK_IMPORTED_MODULE_6__redux__["Actions"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_6__redux__, "AppRouteProvider")) __webpack_require__.d(__webpack_exports__, "AppRouteProvider", function() { return __WEBPACK_IMPORTED_MODULE_6__redux__["AppRouteProvider"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_6__redux__, "CustomErrorHandler")) __webpack_require__.d(__webpack_exports__, "CustomErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_6__redux__["CustomErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_6__redux__, "GoogleSheetsService")) __webpack_require__.d(__webpack_exports__, "GoogleSheetsService", function() { return __WEBPACK_IMPORTED_MODULE_6__redux__["GoogleSheetsService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_6__redux__, "YahooDataService")) __webpack_require__.d(__webpack_exports__, "YahooDataService", function() { return __WEBPACK_IMPORTED_MODULE_6__redux__["YahooDataService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_6__redux__, "store")) __webpack_require__.d(__webpack_exports__, "store", function() { return __WEBPACK_IMPORTED_MODULE_6__redux__["store"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routing__ = __webpack_require__("../../../../../src/app/shared/routing/index.ts");
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_7__routing__, "Actions")) __webpack_require__.d(__webpack_exports__, "Actions", function() { return __WEBPACK_IMPORTED_MODULE_7__routing__["Actions"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_7__routing__, "AppRouteProvider")) __webpack_require__.d(__webpack_exports__, "AppRouteProvider", function() { return __WEBPACK_IMPORTED_MODULE_7__routing__["AppRouteProvider"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_7__routing__, "CustomErrorHandler")) __webpack_require__.d(__webpack_exports__, "CustomErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_7__routing__["CustomErrorHandler"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_7__routing__, "GoogleSheetsService")) __webpack_require__.d(__webpack_exports__, "GoogleSheetsService", function() { return __WEBPACK_IMPORTED_MODULE_7__routing__["GoogleSheetsService"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_7__routing__, "YahooDataService")) __webpack_require__.d(__webpack_exports__, "YahooDataService", function() { return __WEBPACK_IMPORTED_MODULE_7__routing__["YahooDataService"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_7__routing__, "store")) __webpack_require__.d(__webpack_exports__, "store", function() { return __WEBPACK_IMPORTED_MODULE_7__routing__["store"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__security__ = __webpack_require__("../../../../../src/app/shared/security/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__security__ = __webpack_require__("../../../../../src/app/shared/security/index.ts");
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__WebWorkerInteractor__ = __webpack_require__("../../../../../src/app/shared/WebWorkerInteractor.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__WebWorkerInteractor__ = __webpack_require__("../../../../../src/app/shared/WebWorkerInteractor.ts");
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__errorHandling_customErrorHandler__ = __webpack_require__("../../../../../src/app/shared/errorHandling/customErrorHandler.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "CustomErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_10__errorHandling_customErrorHandler__["a"]; });
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__errorHandling_customErrorHandler__ = __webpack_require__("../../../../../src/app/shared/errorHandling/customErrorHandler.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "CustomErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_9__errorHandling_customErrorHandler__["a"]; });
 
 
 
@@ -4140,7 +4146,6 @@ function freezeState(store) {
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "Actions", function() { return __WEBPACK_IMPORTED_MODULE_0__actions__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__IAppState__ = __webpack_require__("../../../../../src/app/shared/redux/IAppState.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__IAppState___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__IAppState__);
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__IAppState__, "AppRouteProvider")) __webpack_require__.d(__webpack_exports__, "AppRouteProvider", function() { return __WEBPACK_IMPORTED_MODULE_1__IAppState__["AppRouteProvider"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__IAppState__, "CustomErrorHandler")) __webpack_require__.d(__webpack_exports__, "CustomErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_1__IAppState__["CustomErrorHandler"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__IAppState__, "GoogleSheetsService")) __webpack_require__.d(__webpack_exports__, "GoogleSheetsService", function() { return __WEBPACK_IMPORTED_MODULE_1__IAppState__["GoogleSheetsService"]; });
 /* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__IAppState__, "YahooDataService")) __webpack_require__.d(__webpack_exports__, "YahooDataService", function() { return __WEBPACK_IMPORTED_MODULE_1__IAppState__["YahooDataService"]; });
@@ -4304,11 +4309,7 @@ var AppRouteProvider_1;
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "AppRouteProvider", function() { return __WEBPACK_IMPORTED_MODULE_0__AppRouteProvider__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__ = __webpack_require__("../../../../../src/app/shared/routing/RouterAndMenuItem.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__);
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__, "Actions")) __webpack_require__.d(__webpack_exports__, "Actions", function() { return __WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__["Actions"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__, "CustomErrorHandler")) __webpack_require__.d(__webpack_exports__, "CustomErrorHandler", function() { return __WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__["CustomErrorHandler"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__, "GoogleSheetsService")) __webpack_require__.d(__webpack_exports__, "GoogleSheetsService", function() { return __WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__["GoogleSheetsService"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__, "YahooDataService")) __webpack_require__.d(__webpack_exports__, "YahooDataService", function() { return __WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__["YahooDataService"]; });
-/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__, "store")) __webpack_require__.d(__webpack_exports__, "store", function() { return __WEBPACK_IMPORTED_MODULE_1__RouterAndMenuItem__["store"]; });
+/* unused harmony namespace reexport */
 
 
 //# sourceMappingURL=index.js.map
