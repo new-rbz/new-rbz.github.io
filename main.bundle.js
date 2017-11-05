@@ -568,14 +568,13 @@ NewsReaderModule = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StockDashboardActions; });
 var StockDashboardActions = (function () {
     function StockDashboardActions() {
-        this.REQUEST_YAHOO_RESULTS_SUCCESS = "REQUEST_YAHOO_RESULTS_SUCCESS";
-        this.REQUEST_VIX_MODEL_SUCCESS = "REQUEST_VIX_MODEL_SUCCESS";
-        this.REQUEST_SELECTED_STOCK_LIST_SUCCESS = "REQUEST_SELECTED_STOCK_LIST_SUCCESS";
-        this.REQUEST_STOCK_LIST_HEADERS_SUCCESS = "REQUEST_STOCK_LIST_HEADERS_SUCCESS";
-        this.TABLE_VIEW_STATE_CHANGE = "TABLE_VIEW_STATE_CHANGE";
-        this.TABLE_SORT_CHANGE = "TABLE_SORT_CHANGE";
-        this.SAVE_TICKERS_4_ANALYSIS = "SAVE_TICKERS_4_ANALYSIS";
-        this.GOOGLE_SHEET_DETAILS_RECEIVED = "GOOGLE_SHEET_DETAILS_RECEIVED";
+        this.REQUEST_YAHOO_RESULTS_SUCCESS = 'REQUEST_YAHOO_RESULTS_SUCCESS';
+        this.REQUEST_VIX_MODEL_SUCCESS = 'REQUEST_VIX_MODEL_SUCCESS';
+        this.REQUEST_SELECTED_STOCK_LIST_SUCCESS = 'REQUEST_SELECTED_STOCK_LIST_SUCCESS';
+        this.REQUEST_STOCK_LIST_HEADERS_SUCCESS = 'REQUEST_STOCK_LIST_HEADERS_SUCCESS';
+        this.TABLE_VIEW_STATE_CHANGE = 'TABLE_VIEW_STATE_CHANGE';
+        this.TABLE_SORT_CHANGE = 'TABLE_SORT_CHANGE';
+        this.SAVE_TICKERS_4_ANALYSIS = 'SAVE_TICKERS_4_ANALYSIS';
     }
     return StockDashboardActions;
 }());
@@ -603,14 +602,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
 
 
 
@@ -621,8 +612,6 @@ var StockDashboardReducer = (function (_super) {
     }
     StockDashboardReducer.prototype.reducer = function (state, action) {
         switch (action.type) {
-            case __WEBPACK_IMPORTED_MODULE_2__shared_redux_actions__["a" /* Actions */].StockDashboardActions.GOOGLE_SHEET_DETAILS_RECEIVED:
-                return this.googleSheetDetailsReceived(state, action);
             case __WEBPACK_IMPORTED_MODULE_2__shared_redux_actions__["a" /* Actions */].StockDashboardActions.REQUEST_SELECTED_STOCK_LIST_SUCCESS:
                 return this.updateSelectedStockList(state, action);
             case __WEBPACK_IMPORTED_MODULE_2__shared_redux_actions__["a" /* Actions */].StockDashboardActions.REQUEST_STOCK_LIST_HEADERS_SUCCESS:
@@ -662,7 +651,7 @@ var StockDashboardReducer = (function (_super) {
     };
     StockDashboardReducer.prototype.updateTableState = function (state, action) {
         return this.updateObject(state, {
-            tableState: __assign({}, action.tableState, { showTable: false })
+            tableState: action.tableState
         });
     };
     StockDashboardReducer.prototype.updateGroupedYahooResults = function (state, action) {
@@ -678,26 +667,13 @@ var StockDashboardReducer = (function (_super) {
     StockDashboardReducer.prototype.updateStockListHeaders = function (state, action) {
         return this.updateObject(state, {
             stockListHeaders: action.stockListHeaders,
-            tableState: __assign({}, action.tableState, { showTable: false })
+            tableState: action.tableState
         });
     };
     StockDashboardReducer.prototype.updateSelectedStockList = function (state, action) {
         return this.updateObject(state, {
             selectedStockList: action.selectedStockList
         });
-    };
-    StockDashboardReducer.prototype.googleSheetDetailsReceived = function (state, action) {
-        var tmp = [];
-        if (state.groups) {
-            tmp = __WEBPACK_IMPORTED_MODULE_0_lodash__["cloneDeep"](state.groups);
-        }
-        if (!__WEBPACK_IMPORTED_MODULE_0_lodash__["some"](tmp, function (x) { return x.title === action.list.listTitle; })) {
-            tmp.push({
-                title: action.list.listTitle,
-                tickers: __WEBPACK_IMPORTED_MODULE_0_lodash__["filter"](action.list.tickers, function (x) { return x.isActive === "1"; })
-            });
-        }
-        return __assign({}, state, { groups: tmp });
     };
     return StockDashboardReducer;
 }(__WEBPACK_IMPORTED_MODULE_1__shared_redux_BaseReducer__["a" /* BaseReducer */]));
@@ -709,7 +685,7 @@ var StockDashboardReducer = (function (_super) {
 /***/ "../../../../../src/app/modules/StockDashboardModule/components/chart-viewer/chart-viewer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"arrayOfKeys\" id=\"\" style=\"overflow-x: scroll; width:97vw;\">\n  <md-tab-group>\n    <md-tab *ngFor=\"let category of arrayOfKeys\" label=\"{{ category}} ({{selectedGroup[category].length}})\">\n      <a *ngFor=\"let company of selectedGroup[category]\" (click)=\"rowClicked(company)\" target=\"_blank\">\n        <img src=\"http://finviz.com/chart.ashx?t={{company.ticker}}&ty=c&ta=1&p=d&s=l\" />\n      </a>\n    </md-tab>\n  </md-tab-group>\n</div>\n"
+module.exports = "<div id=\"\" style=\"overflow-x: scroll; width:97vw;\">\n<md-tab-group>\n  <md-tab *ngFor=\"let group of groupedYahooResults$ | async\" label=\"{{ group[0].group}} ({{group.length}})\">\n    <a *ngFor=\"let company of group\" (click)=\"rowClicked(company)\"\n      target=\"_blank\">\n      <img src=\"http://finviz.com/chart.ashx?t={{company.symbol}}&ty=c&ta=1&p=d&s=l\" />\n    </a>\n  </md-tab>\n</md-tab-group>\n</div>\n"
 
 /***/ }),
 
@@ -723,8 +699,6 @@ module.exports = "<div *ngIf=\"arrayOfKeys\" id=\"\" style=\"overflow-x: scroll;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__("../../../../lodash/lodash.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -737,56 +711,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var ChartViewerComponent = (function () {
     function ChartViewerComponent() {
-        this.onChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"](true);
     }
-    ChartViewerComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.groups$.subscribe(function (x) {
-            _this.groups = x;
-            var tmp = __WEBPACK_IMPORTED_MODULE_3_lodash__["filter"](_this.groups, function (x) { return x.title === _this.selectedList; })[0];
-            if (tmp && tmp.tickers) {
-                _this.selectedGroup = __WEBPACK_IMPORTED_MODULE_3_lodash__["groupBy"](tmp.tickers, function (x) { return x.category; });
-                _this.arrayOfKeys = Object.keys(_this.selectedGroup);
-                _this.onChange.emit(_this.selectedGroup);
-            }
-            console.log(_this.selectedGroup);
-        });
-        this.tableState$.subscribe(function (x) {
-            _this.selectedList = x.selectedStockList;
-        });
-    };
     ChartViewerComponent.prototype.rowClicked = function (result) {
-        var win = window.open("http://www.gurufocus.com/stock/" + result.ticker, "_blank");
-        var win2 = window.open("http://quote.morningstar.com/Quote.html?ticker=" + result.ticker, "_blank");
-        var win3 = window.open("https://www.tradingview.com/chart/?symbol=" + result.ticker + "&interval=D&hidesidetoolbar=0&symboledit=1&toolbarbg=f4f7f9&studies=&hideideas=0&theme=Black&timezone=exchange&showpopupbutton=1&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&showpopupbutton=1", "_blank");
+        var win = window.open("http://www.gurufocus.com/stock/" + result.symbol, '_blank');
+        var win2 = window.open("http://quote.morningstar.com/Quote.html?ticker=" + result.symbol, '_blank');
+        var win3 = window.open("https://www.tradingview.com/chart/?symbol=" + result.symbol + "&interval=D&hidesidetoolbar=0&symboledit=1&toolbarbg=f4f7f9&studies=&hideideas=0&theme=Black&timezone=exchange&showpopupbutton=1&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&showpopupbutton=1", '_blank');
     };
     return ChartViewerComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__["select"])("groups"),
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__["select"])('groupedYahooResults'),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"]) === "function" && _a || Object)
-], ChartViewerComponent.prototype, "groups$", void 0);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__["select"])("tableState"),
-    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"]) === "function" && _b || Object)
-], ChartViewerComponent.prototype, "tableState$", void 0);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
-    __metadata("design:type", typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === "function" && _c || Object)
-], ChartViewerComponent.prototype, "onChange", void 0);
+], ChartViewerComponent.prototype, "groupedYahooResults$", void 0);
 ChartViewerComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: "chart-viewer",
+        selector: 'chart-viewer',
         template: __webpack_require__("../../../../../src/app/modules/StockDashboardModule/components/chart-viewer/chart-viewer.component.html"),
         styles: [],
-        changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].Default
+        changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush
     })
 ], ChartViewerComponent);
 
-var _a, _b, _c;
+var _a;
 //# sourceMappingURL=chart-viewer.component.js.map
 
 /***/ }),
@@ -937,7 +885,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/modules/StockDashboardModule/components/stock-view-changer/stock-view-changer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<md-grid-list cols=\"3\" rowHeight=\"35px\" style=\"width: 40em;\">\n  <md-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n    <md-select (ngModelChange)=\"onListChange($event)\" [ngModel]=\"selectedStockList\" style=\"padding-left: 2em; width: 12em;\">\n      <md-option *ngFor=\"let list of stockListHeaders$ | async\" [value]=\"list.title\" style=\"color:#fff !important;\">{{list.title}}</md-option>\n    </md-select>\n  </md-grid-tile>\n</md-grid-list>\n"
+module.exports = "<md-grid-list\n  cols=\"3\"\n  rowHeight=\"35px\"\n  style=\"width: 40em;\">\n  <md-grid-tile\n    [colspan]=\"1\"\n    [rowspan]=\"1\">\n    <md-slide-toggle\n    (ngModelChange)=\"onShowTableChange($event)\"\n    [ngModel]=\"showTable\"\n    color=\"primary\"\n    labelPosition=\"before\">{{showTable ? 'Table' : 'Charts'}}</md-slide-toggle>\n  </md-grid-tile>\n\n  <md-grid-tile\n    [colspan]=\"1\"\n    [rowspan]=\"1\">\n    <md-select\n      (ngModelChange)=\"onListChange($event)\"\n      [ngModel]=\"selectedStockList\"\n      style=\"padding-left: 2em; width: 12em;\">\n      <md-option\n        *ngFor=\"let list of stockListHeaders$ | async\"\n        [value]=\"list.title\"\n        style=\"color:#fff !important;\">{{list.title}}</md-option>\n    </md-select>\n  </md-grid-tile>\n\n  <md-grid-tile\n    *ngIf=\"showTable\"\n    [colspan]=\"1\"\n    [rowspan]=\"1\">\n    <md-slide-toggle\n      (ngModelChange)=\"onTechnicalChange($event)\"\n      [ngModel]=\"showTechnical\"\n      color=\"accent\"\n      labelPosition=\"before\">{{showTechnical ? 'Technical' : 'Fundamentals'}}</md-slide-toggle>\n  </md-grid-tile>\n</md-grid-list>\n"
 
 /***/ }),
 
@@ -1031,7 +979,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/modules/StockDashboardModule/components/stockdashboard/stockdashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <dashboard-overview></dashboard-overview>\n  <br />\n  <md-card>\n    <!-- <volatility-panel></volatility-panel> -->\n    <stock-view-changer></stock-view-changer>\n    <stock-table *ngIf=\"(tableState$|async).showTable\"></stock-table>\n    <chart-viewer *ngIf=\"!(tableState$|async).showTable\"></chart-viewer>\n  </md-card>\n</div>\n"
+module.exports = "<div>\n  <dashboard-overview></dashboard-overview>\n  <br />\n  <md-card>\n    <volatility-panel></volatility-panel>\n    <stock-view-changer></stock-view-changer>\n    <stock-table *ngIf=\"(tableState$|async).showTable\"></stock-table>\n    <chart-viewer *ngIf=\"!(tableState$|async).showTable\"></chart-viewer>\n  </md-card>\n</div>\n"
 
 /***/ }),
 
@@ -1284,8 +1232,8 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TableViewState; });
 var TableViewState = (function () {
     function TableViewState(selectedStockList, showTable, showTechnical) {
-        if (selectedStockList === void 0) { selectedStockList = ""; }
-        if (showTable === void 0) { showTable = false; }
+        if (selectedStockList === void 0) { selectedStockList = ''; }
+        if (showTable === void 0) { showTable = true; }
         if (showTechnical === void 0) { showTechnical = true; }
         this.selectedStockList = selectedStockList;
         this.showTable = showTable;
@@ -1386,51 +1334,38 @@ var RestInteractorService = (function () {
         if (!this.stockListHeaders) {
             return;
         }
-        var stockListHeader = this.stockListHeaders.filter(function (x) { return x.title === selectedStockList; })[0];
-        this.BeginIsInProgress("GOOGLE SHEETS", "Retrieving Data...");
-        this.googleSheetService
-            .getSheetData(stockListHeader)
-            .subscribe(function (companies) {
-            var tickers = __WEBPACK_IMPORTED_MODULE_4_lodash__(companies.response)
+        var stockListHeader = this.stockListHeaders
+            .filter(function (x) { return x.title === selectedStockList; })[0];
+        this.BeginIsInProgress('GOOGLE SHEETS', 'Retrieving Data...');
+        this.googleSheetService.getSheetData(stockListHeader).subscribe(function (companies) {
+            var tickers = __WEBPACK_IMPORTED_MODULE_4_lodash__(companies)
                 .filter(function (x) { return x.isActive == 1; })
                 .uniqBy(function (x) { return x.ticker; })
                 .value();
-            _this.ngRedux.dispatch({
-                type: __WEBPACK_IMPORTED_MODULE_6__shared__["Actions"].StockDashboardActions.GOOGLE_SHEET_DETAILS_RECEIVED,
-                list: {
-                    listTitle: companies.sheetInfo.title,
-                    tickers: tickers
-                }
-            });
-            _this.EndIsInProgress("GOOGLE SHEETS", "Data Received");
-            // this.getYahoo(tickers);
+            _this.EndIsInProgress('GOOGLE SHEETS', 'Data Received');
+            _this.getYahoo(tickers);
         });
     };
     RestInteractorService.prototype.isAuthorized = function () {
         var _this = this;
-        this.BeginIsInProgress("GOOGLE SHEETS", "Retrieving Data...");
-        this.googleSheetService
-            .getMasterSheetData()
+        this.BeginIsInProgress('GOOGLE SHEETS', 'Retrieving Data...');
+        this.googleSheetService.getMasterSheetData()
             .subscribe(function (stockListHeaders) {
-            _this.stockListHeaders = stockListHeaders.response;
+            _this.stockListHeaders = stockListHeaders;
             _this.ngRedux.dispatch({
                 type: __WEBPACK_IMPORTED_MODULE_6__shared__["Actions"].StockDashboardActions.REQUEST_SELECTED_STOCK_LIST_SUCCESS,
-                selectedStockList: _this.stockListHeaders[0].title
+                selectedStockList: _this.stockListHeaders[0].title,
             });
             _this.ngRedux.dispatch({
                 type: __WEBPACK_IMPORTED_MODULE_6__shared__["Actions"].StockDashboardActions.REQUEST_STOCK_LIST_HEADERS_SUCCESS,
-                stockListHeaders: _this.stockListHeaders,
-                tableState: new __WEBPACK_IMPORTED_MODULE_7__models__["a" /* TableViewState */](_this.stockListHeaders[0].title, true, true)
+                stockListHeaders: stockListHeaders,
+                tableState: new __WEBPACK_IMPORTED_MODULE_7__models__["a" /* TableViewState */](stockListHeaders[0].title, true, true)
             });
-            _this.onListSelectChange(_this.stockListHeaders[0].title);
-            _this.EndIsInProgress("GOOGLE SHEETS", "Data Received");
-            __WEBPACK_IMPORTED_MODULE_4_lodash__["forEach"](_this.stockListHeaders, function (sheetInfo) {
-                _this.googleSheetService
-                    .getSheetData(sheetInfo)
-                    .subscribe(function (selected) {
-                    var tickers4Analysis = __WEBPACK_IMPORTED_MODULE_4_lodash__(selected)
-                        .uniqBy(function (x) { return x.ticker; })
-                        .value();
+            _this.onListSelectChange(stockListHeaders[0].title);
+            _this.EndIsInProgress('GOOGLE SHEETS', 'Data Received');
+            __WEBPACK_IMPORTED_MODULE_4_lodash__["forEach"](stockListHeaders, function (sheetInfo) {
+                _this.googleSheetService.getSheetData(sheetInfo).subscribe(function (selected) {
+                    var tickers4Analysis = __WEBPACK_IMPORTED_MODULE_4_lodash__(selected).uniqBy(function (x) { return x.ticker; }).value();
                     _this.ngRedux.dispatch({
                         type: __WEBPACK_IMPORTED_MODULE_6__shared__["Actions"].StockDashboardActions.SAVE_TICKERS_4_ANALYSIS,
                         tickers4Analysis: tickers4Analysis
@@ -1441,9 +1376,8 @@ var RestInteractorService = (function () {
     };
     RestInteractorService.prototype.getYahoo = function (tickers) {
         var _this = this;
-        this.BeginIsInProgress("YAHOO", "Retreiving Data...");
-        this.yahoo
-            .getTickerData(tickers)
+        this.BeginIsInProgress('YAHOO', 'Retreiving Data...');
+        this.yahoo.getTickerData(tickers)
             .subscribe(function (nestedResults) {
             _this.handleYahooResponse(nestedResults, tickers);
         });
@@ -1464,67 +1398,59 @@ var RestInteractorService = (function () {
         if (vixModel.spxDailyPercentChange) {
             this.ngRedux.dispatch({
                 type: __WEBPACK_IMPORTED_MODULE_6__shared__["Actions"].StockDashboardActions.REQUEST_VIX_MODEL_SUCCESS,
-                vixModel: vixModel
+                vixModel: vixModel,
             });
         }
-        var groupedYahooResults = __WEBPACK_IMPORTED_MODULE_4_lodash__["values"](__WEBPACK_IMPORTED_MODULE_4_lodash__(results)
-            .groupBy(function (x) { return x.group; })
-            .value());
-        this.EndIsInProgress("YAHOO", "Data Received");
+        var groupedYahooResults = __WEBPACK_IMPORTED_MODULE_4_lodash__["values"](__WEBPACK_IMPORTED_MODULE_4_lodash__(results).groupBy(function (x) { return x.group; }).value());
+        this.EndIsInProgress('YAHOO', 'Data Received');
         this.ngRedux.dispatch({
             type: __WEBPACK_IMPORTED_MODULE_6__shared__["Actions"].StockDashboardActions.REQUEST_YAHOO_RESULTS_SUCCESS,
-            groupedYahooResults: groupedYahooResults
+            groupedYahooResults: groupedYahooResults,
         });
     };
     RestInteractorService.prototype.buildVixModel = function (vixModel, result) {
-        if (result.Symbol.endsWith(".NYM")) {
-            // this will need to be updated to the new contract
+        if (result.Symbol.endsWith('.NYM')) {
             vixModel.wti = parseFloat(result.LastTradePriceOnly.toString());
-            vixModel.wtiDailyPercentChange =
-                parseFloat(result.ChangeinPercent.toString()) / 100;
+            vixModel.wtiDailyPercentChange = parseFloat(result.ChangeinPercent.toString()) / 100;
         }
-        if (result.Symbol === "SPY") {
-            vixModel.spxDailyPercentChange =
-                parseFloat(result.ChangeinPercent.toString()) / 100;
+        if (result.Symbol === 'SPY') {
+            vixModel.spxDailyPercentChange = parseFloat(result.ChangeinPercent.toString()) / 100;
             vixModel.spxRelativeVolume = result.relativeVolume / 100;
             var changeAbove200ma = parseFloat(result.ChangeFromTwoHundreddayMovingAverage.toString());
             var ma200 = parseFloat(result.TwoHundreddayMovingAverage.toString());
-            vixModel.spxChangeFromTwoHundreddayMovingAverage =
-                (ma200 + changeAbove200ma) / ma200 - 1;
+            vixModel.spxChangeFromTwoHundreddayMovingAverage = ((ma200 + changeAbove200ma) / ma200) - 1;
         }
-        if (result.Symbol === "DX-Y.NYB") {
+        if (result.Symbol === 'DX-Y.NYB') {
             vixModel.usd = parseFloat(result.LastTradePriceOnly.toString());
-            vixModel.usdDailyPercentChange =
-                parseFloat(result.ChangeinPercent.toString()) / 100;
+            vixModel.usdDailyPercentChange = parseFloat(result.ChangeinPercent.toString()) / 100;
         }
-        else if (result.Symbol === "^VIX") {
+        else if (result.Symbol === '^VIX') {
             vixModel.vix = parseFloat(result.LastTradePriceOnly.toString());
-            vixModel.vixDailyPercentChange =
-                parseFloat(result.ChangeinPercent.toString()) / 100;
+            vixModel.vixDailyPercentChange = parseFloat(result.ChangeinPercent.toString()) / 100;
         }
-        else if (result.Symbol === "^VXV") {
+        else if (result.Symbol === '^VXV') {
             vixModel.vixThreeMonth = parseFloat(result.LastTradePriceOnly.toString());
         }
         return vixModel;
     };
     RestInteractorService.prototype.BeginIsInProgress = function (source, message, duration) {
-        if (source === void 0) { source = ""; }
-        if (message === void 0) { message = "Querying..."; }
+        if (source === void 0) { source = ''; }
+        if (message === void 0) { message = 'Querying...'; }
         if (duration === void 0) { duration = 3000; }
         this.statusNotificationService.setIsUpdating(true);
-        this.statusNotificationService.openSnackBar(source + ":", message, duration);
+        this.statusNotificationService.openSnackBar(source + ':', message, duration);
     };
     RestInteractorService.prototype.EndIsInProgress = function (source, message, duration) {
-        if (source === void 0) { source = ""; }
-        if (message === void 0) { message = "Querying..."; }
+        if (source === void 0) { source = ''; }
+        if (message === void 0) { message = 'Querying...'; }
         if (duration === void 0) { duration = 3000; }
         this.statusNotificationService.setIsUpdating(false);
-        this.statusNotificationService.openSnackBar(source + ":", message, duration);
+        this.statusNotificationService.openSnackBar(source + ':', message, duration);
     };
     return RestInteractorService;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_2__angular_redux_store__["select"])("tableState"),
+    Object(__WEBPACK_IMPORTED_MODULE_2__angular_redux_store__["select"])('tableState'),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__["Observable"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__["Observable"]) === "function" && _a || Object)
 ], RestInteractorService.prototype, "tableViewState$", void 0);
 RestInteractorService = __decorate([
@@ -1716,15 +1642,11 @@ var AutoSelectComponent = (function () {
         this.cd = cd;
         this.onChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"](true);
         this.formControl = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */]();
-        this.filteredList = this.formControl.valueChanges.startWith(null).map(function (enteredText) {
-            return enteredText
-                ? _this.list.filter(function (item) {
-                    return __WEBPACK_IMPORTED_MODULE_2_lodash__["includes"](_this.getDescription(item).toLowerCase(), typeof enteredText === "string"
-                        ? enteredText.toLowerCase()
-                        : _this.getDescription(enteredText));
-                })
-                : _this.list;
-        });
+        this.filteredList = this.formControl.valueChanges
+            .startWith(null)
+            .map(function (enteredText) { return enteredText ? _this.list.filter(function (item) {
+            return __WEBPACK_IMPORTED_MODULE_2_lodash__["includes"](_this.getDescription(item).toLowerCase(), typeof enteredText === 'string' ? enteredText.toLowerCase() : _this.getDescription(enteredText));
+        }) : _this.list; });
     }
     Object.defineProperty(AutoSelectComponent.prototype, "selectedValue", {
         set: function (value) {
@@ -1761,7 +1683,7 @@ __decorate([
 ], AutoSelectComponent.prototype, "onChange", void 0);
 AutoSelectComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: "auto-select",
+        selector: 'auto-select',
         template: __webpack_require__("../../../../../src/app/modules/form-tests/auto-select/auto-select.component.html"),
         styles: [__webpack_require__("../../../../../src/app/modules/form-tests/auto-select/auto-select.component.scss")],
         changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush
@@ -3121,13 +3043,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var GoogleSheetsService = (function () {
     function GoogleSheetsService() {
         this.token = false;
-        this.CLIENT_ID = "844875982113-om6hos1ao3obpsoqhae3eo6b6meueqro.apps.googleusercontent.com";
-        this.SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
+        this.CLIENT_ID = '844875982113-om6hos1ao3obpsoqhae3eo6b6meueqro.apps.googleusercontent.com';
+        this.SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
         this.adapters = new __WEBPACK_IMPORTED_MODULE_2__GoogleSheetsAdapterMap__["a" /* GoogleSheetsAdapterMap */]();
         this.mainsheet = {
-            sheetId: "1XEoflheZAvbtpyBBs5TIuf-E2DpLRmCTMW_A_tctKS4",
-            range: "Sheet1!A1:E",
-            adapter: "masterSheetAdapter"
+            sheetId: '1XEoflheZAvbtpyBBs5TIuf-E2DpLRmCTMW_A_tctKS4',
+            range: 'Sheet1!A1:E',
+            adapter: 'masterSheetAdapter'
         };
         this.token = false;
     }
@@ -3146,22 +3068,16 @@ var GoogleSheetsService = (function () {
         return wrappedCallback(sheetInfo);
     };
     GoogleSheetsService.prototype.callSheetsApi = function (sheetInfo, callback) {
-        gapi.client
-            .load("https://sheets.googleapis.com/$discovery/rest?version=v4")
+        gapi.client.load('https://sheets.googleapis.com/$discovery/rest?version=v4')
             .then(function () {
-            gapi.client.sheets.spreadsheets.values
-                .get({
+            gapi.client.sheets.spreadsheets.values.get({
                 spreadsheetId: sheetInfo.sheetId,
-                range: sheetInfo.range
-            })
-                .then(function (response) {
+                range: sheetInfo.range,
+            }).then(function (response) {
                 var values = response.result.values;
                 var func = __WEBPACK_IMPORTED_MODULE_2__GoogleSheetsAdapterMap__["a" /* GoogleSheetsAdapterMap */].map[sheetInfo.adapter];
                 var result = func(values);
-                callback({
-                    response: result,
-                    sheetInfo: sheetInfo
-                });
+                callback(result);
             }, function (response) {
                 console.error("Error: " + response.result.error.message);
             });
@@ -3177,7 +3093,7 @@ var GoogleSheetsService = (function () {
         var _this = this;
         gapi.auth.authorize({
             client_id: this.CLIENT_ID,
-            scope: this.SCOPES.join(" "),
+            scope: this.SCOPES.join(' '),
             immediate: !immediate
         }, function (authResult) { return _this.handleAuthResult(authResult, callback); });
         return false;
