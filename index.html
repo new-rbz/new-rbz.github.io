@@ -1,9 +1,104 @@
-<!doctype html><html><head><title>Dashboard</title><base href="/"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"><script type="text/javascript" src="//www.google.com/jsapi"></script><script src="//apis.google.com/js/client.js?onload=checkAuth"></script><script src="//cdn.auth0.com/js/lock-8.1.min.js"></script><link rel="prefetch" href="scripts/recursiveTimeoutPattern.js" as="script"><link rel="prefetch" href="scripts/material.min.js" as="script"><link rel="prefetch" src="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" as="style"><link rel="prefetch" src="https://fonts.googleapis.com/icon?family=Material+Icons" as="style"><link rel="prefetch" src="https://fonts.gstatic.com/s/materialicons/v31/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2" type="font/woff2" as="font"><link rel="prefetch" href="/manifest.json" as="fetch"><link rel="icon" type="image/x-icon" href="assets/favicon.ico"><link rel="prefetch" href="styles/material.green-blue.min.css" as="style"><link rel="prefetch" href="https://finviz.com/mktstats_image.ashx?0&rev=635491895855156250" as="image"><link rel="prefetch" href="https://finviz.com/mktstats_image.ashx?1&rev=635491895855156250" as="image"><link rel="prefetch" href="https://finviz.com/mktstats_image.ashx?2&rev=635491895855156250" as="image"><link rel="prefetch" href="https://finviz.com/mktstats_image.ashx?3&rev=635491895855156250" as="image"><link rel="prefetch" href="https://finviz.com/mktstats_image.ashx?4&rev=635491895855156250" as="image"><link rel="prefetch" href="https://finviz.com/image.ashx?sp500&rev=635491898253437500" as="image"><link rel="prefetch" href="https://finviz.com/image.ashx?dow&rev=635491898253437500" as="image"><link rel="prefetch" href="https://finviz.com/image.ashx?nasdaq&rev=635491898253437500" as="image"><script>if ( 'serviceWorker' in navigator ) {
-        navigator.serviceWorker.register( '/service-worker.js' ).then( function ( registration ) {
+<!doctype html>
+<html>
+
+  <head>
+    <title>Dashboard</title>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/javascript" src="//www.google.com/jsapi"></script>
+    <script src="//apis.google.com/js/client.js?onload=checkAuth"></script>
+    <script src="//cdn.auth0.com/js/lock-8.1.min.js"></script>
+    <link rel="prefetch" href="scripts/recursiveTimeoutPattern.js" as="script">
+    <link rel="prefetch" href="scripts/material.min.js" as="script">
+    <link rel="prefetch" src="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+      as="style">
+    <link rel="prefetch" src="https://fonts.googleapis.com/icon?family=Material+Icons"
+      as="style">
+    <link rel="prefetch" src="https://fonts.gstatic.com/s/materialicons/v31/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2"
+      type="font/woff2" as="font">
+    <link rel="prefetch" href="/manifest.json" as="fetch">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="prefetch" href="styles/material.green-blue.min.css" as="style">
+    <link rel="prefetch" href="https://finviz.com/mktstats_image.ashx?0&rev=635491895855156250"
+      as="image">
+    <link rel="prefetch" href="https://finviz.com/mktstats_image.ashx?1&rev=635491895855156250"
+      as="image">
+    <link rel="prefetch" href="https://finviz.com/mktstats_image.ashx?2&rev=635491895855156250"
+      as="image">
+    <link rel="prefetch" href="https://finviz.com/mktstats_image.ashx?3&rev=635491895855156250"
+      as="image">
+    <link rel="prefetch" href="https://finviz.com/mktstats_image.ashx?4&rev=635491895855156250"
+      as="image">
+    <link rel="prefetch" href="https://finviz.com/image.ashx?sp500&rev=635491898253437500"
+      as="image">
+    <link rel="prefetch" href="https://finviz.com/image.ashx?dow&rev=635491898253437500"
+      as="image">
+    <link rel="prefetch" href="https://finviz.com/image.ashx?nasdaq&rev=635491898253437500"
+      as="image">
+    <script>
+      if ( 'serviceWorker' in navigator ) {
+        navigator.serviceWorker.register( '/service-worker.js' ).then( function (
+          registration ) {
           // Registration was successful
-          console.log( 'ServiceWorker registration successful with scope: ', registration.scope );
+          console.log( 'ServiceWorker registration successful with scope: ',
+            registration.scope );
         } ).catch( function ( err ) {
           // registration failed :(
           console.log( 'ServiceWorker registration failed: ', err );
         } );
-      }</script><script>window.req = window.dep = null;</script><link href="styles.93fac4b6fff5764af8f2.bundle.css" rel="stylesheet"/></head><body><dashboard-root>Loading...</dashboard-root><script type="text/javascript" src="inline.cde31289857fcd275717.bundle.js"></script><script type="text/javascript" src="polyfills.32090ebabe7b3bb78801.bundle.js"></script><script type="text/javascript" src="main.19c0e63fac81ffc8fd91.bundle.js"></script></body></html>
+      }
+
+    </script>
+    <script>
+      window.req = window.dep = null;
+
+      function recursiveTimeoutPattern( operation, timeout, refreshOnMobile ) {
+        if ( !refreshOnMobile && typeof window.orientation !== "undefined" ) {
+          return;
+        }
+
+        if ( !timeout || !( !isNaN( parseFloat( timeout ) ) && isFinite(
+            timeout ) ) ) {
+          timeout = 60000;
+        }
+
+        setTimeout( function () {
+          if ( operation && typeof operation === "function" ) {
+            operation();
+            recursiveTimeoutPattern( operation, timeout, refreshOnMobile );
+          }
+        }, timeout );
+      }
+
+      recursiveTimeoutPattern( function () {
+        var imgs = document.getElementsByTagName( "img" ),
+          substring = "&rand=";
+
+        if ( navigator && navigator.onLine ) {
+          for ( var i = 0; i < imgs.length; i++ ) {
+            if ( imgs[ i ].src.indexOf( "https://s.gravatar.com/avatar/" ) ===
+              -1 ) {
+              var src = imgs[ i ].src.substring( 0, 55 );
+              imgs[ i ].src = src.split( substring )[ 0 ] + substring +
+                Math.random();
+            }
+          }
+        }
+      }, 15000 );
+
+    </script>
+    <link href="styles.93fac4b6fff5764af8f2.bundle.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <dashboard-root>Loading...</dashboard-root>
+    <script type="text/javascript" src="inline.cde31289857fcd275717.bundle.js"></script>
+    <script type="text/javascript" src="polyfills.32090ebabe7b3bb78801.bundle.js"></script>
+    <script type="text/javascript" src="main.19c0e63fac81ffc8fd91.bundle.js"></script>
+  </body>
+
+</html>
